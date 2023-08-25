@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet"  href="~/css/_LayoutNavbar.css" />
+</head>
+<body>
+  
+    <div class="wrap-header">
+        <div class="header">
+            <a href="#" class="logo">
+                <img src="~/image/logo-header.svg" width="60px" height="60px" />
+                <span>Kaiser Store</span>
+            </a>
+
+            <div class="search">
+                <input class="search-input" placeholder="Tìm kiếm sản phẩm" />
+            </div>
+            <div class="accounts">
+                <div class="accounts-title">
+                    <img src="~/image/lock-solid.svg" width="24px" height="24px" />
+                    <span>Tài khoản </span>
+                </div>
+
+                <div class="list-link">
+                    <a href="#" class="link">Đăng ký</a>
+                    <span style="margin-top: 3px">|</span>
+                    <a href="#" class="link">Đăng nhập</a>
+                </div>
+            </div>
+            <div class="cart">
+                <a href="#" class="card-item">
+                    <img src="~/image/cart-shopping-solid.svg" width="24px" height="24px" />
+                    <span>Giỏ hàng</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar">
+            <a class="nav" href="#">Thời trang nam</a>
+            <a class="nav" href="#">Thời trang nữ</a>
+            <a class="nav" href="#">Thời trang mùa đông</a>
+            <a class="nav" href="#">Thời trang mùa hè</a>
+        </div>
+
+    </div>
+  
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

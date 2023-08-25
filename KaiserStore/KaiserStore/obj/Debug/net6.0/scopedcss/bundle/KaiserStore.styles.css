@@ -1,0 +1,23 @@
+/* _content/KaiserStore/Views/Shared/_LayoutNavbar.cshtml.rz.scp.css */
+body[b-q4mm78uqc7] {
+    display: flex;
+    flex-direction: column;
+    flex: 6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+.header[b-q4mm78uqc7] {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+.navbar[b-q4mm78uqc7] {
+    flex: 1;
+}
+.main[b-q4mm78uqc7] {
+    flex: 3;
+}
+.footer[b-q4mm78uqc7] {
+    flex: 1;
+}
