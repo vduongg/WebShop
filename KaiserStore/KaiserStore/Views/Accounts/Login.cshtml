@@ -1,0 +1,36 @@
+﻿@model KaiserStore.Models.LoginModel;
+
+@{
+    ViewData["Title"] = "Kaiser Store • Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleLogin.css" />
+</head>
+<body>
+    <form class="loginForm" method="post">
+        <div class="loginTitle">ĐĂNG NHẬP TÀI KHOẢN</div>
+        <div class="user">
+            <span id="user">Tên người dùng hoặc email</span>
+            <input type="text" oninput="userType(this.value,'user')" value="" asp-for="user" />
+        </div>
+        <div class="pass">
+            <span id="pass">Mật khẩu</span>
+            <input type="password" oninput="userType(this.value,'pass')" value="" asp-for="pass" />
+        </div>
+        <div class="buttonOK">
+            <button type="submit">Đăng nhập</button>
+        </div>
+        <a href="#">Quên mật khẩu?</a>
+        <span>BẠN CHƯA CÓ TÀI KHOẢN. ĐĂNG KÝ <a href="/accounts/register">TẠI ĐÂY.</a> </span>
+
+
+    </form>
+
+    <script src="~/js/Login.js"></script>
+</body>
+</html>

@@ -1,6 +1,9 @@
 ﻿using KaiserStore.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace KaiserStore.Controllers
 {
@@ -12,13 +15,19 @@ namespace KaiserStore.Controllers
         {
             _logger = logger;
         }
-
+        [Route("/")]
         public IActionResult Home()
         {
+           
+           
             return View();
         }
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("login", "accounts");
+        }
 
-    
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

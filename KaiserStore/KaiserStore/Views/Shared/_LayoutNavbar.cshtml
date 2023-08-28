@@ -4,52 +4,110 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/image/logo-header.svg" />
     <link rel="stylesheet"  href="~/css/_LayoutNavbar.css" />
+
 </head>
 <body>
-  
-    <div class="wrap-header">
-        <div class="header">
-            <a href="#" class="logo">
-                <img src="~/image/logo-header.svg" width="60px" height="60px" />
-                <span>Kaiser Store</span>
-            </a>
+  <div class="wrapper">
+        <div class="wrap-header">
+            <div class="header">
+                <a href="/" class="logo">
+                    <img src="~/image/logo-header.svg" width="60px" height="60px" />
+                    <span>Kaiser Store</span>
+                </a>
 
-            <div class="search">
-                <input class="search-input" placeholder="Tìm kiếm sản phẩm" />
-            </div>
-            <div class="accounts">
-                <div class="accounts-title">
-                    <img src="~/image/lock-solid.svg" width="24px" height="24px" />
-                    <span>Tài khoản </span>
+                <div class="search">
+                    <input class="search-input" placeholder="Tìm kiếm sản phẩm" />
                 </div>
+                <div class="cart">
+                    <a href="#" class="card-item">
+                        <img src="~/image/cart-shopping-solid.svg" width="24px" height="24px" />
+                        <span>Giỏ hàng</span>
+                        <span>/</span>
+                        <span>0đ</span>
+                    </a>
+                </div>
+                @if (!(User.Identity.IsAuthenticated))
+                {
+                    <div class="accounts">
+                        <div class="accounts-title">
+                            <img src="~/image/lock-solid.svg" width="24px" height="24px" />
+                            <span>Tài khoản </span>
+                        </div>
 
-                <div class="list-link">
-                    <a href="#" class="link">Đăng ký</a>
-                    <span style="margin-top: 3px">|</span>
-                    <a href="#" class="link">Đăng nhập</a>
-                </div>
+                        <div class="list-link">
+                            <a href="/accounts/register" class="link">Đăng ký</a>
+                            <span style="margin-top: 3px">|</span>
+                            <a href="/accounts/login" class="link">Đăng nhập</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <span style="font-size: 14px; padding-right: 10px">Xin chào @User.Identity.Name,</span>
+                    <a  style="font-size: 16px; font-weight: 600; border-bottom: 1px solid; color: black;" class="LogOut" asp-action="LogOut"> Đăng xuất</a>
+                }
+
+              
             </div>
-            <div class="cart">
-                <a href="#" class="card-item">
-                    <img src="~/image/cart-shopping-solid.svg" width="24px" height="24px" />
-                    <span>Giỏ hàng</span>
+
+            <div class="navbar">
+                <a class="nav" href="#">Thời trang nam</a>
+                <a class="nav" href="#">Thời trang nữ</a>
+                <a class="nav" href="#">Thời trang mùa đông</a>
+                <a class="nav" href="#">Thời trang mùa hè</a>
+            </div>
+            
+        </div>
+
+       
+  </div>
+
+    <div class="main">
+        @RenderBody()
+
+        <div class="footer">
+            <img src="~/image/logo-footer.svg" width="150px" height="150px" />
+            <div class="list-footer">
+                <span class="title">
+                    LIÊN HỆ
+                </span>
+                <span class="footer-item">
+                    Địa Chỉ: KIM GIANG, HOÀNG MAI, HÀ NỘI
+                </span>
+                <span class="footer-item">
+                    Email: VDUONGG0503@GMAIL.COM
+                </span>
+                <span class="footer-item">
+                    Hotline : 039.5680.199
+                </span>
+            </div>
+            <div class="list-footer">
+                <span class="title">
+                    CHÍNH SÁCH
+                </span>
+                <a href="#" class="footer-item">> CHÍNH SÁCH THÀNH VIÊN</a>
+                <a href="#" class="footer-item">> CHÍNH SÁCH ĐỔI TRẢ</a>
+                <a href="#" class="footer-item">> CHÍNH SÁCH VẬN CHUYỂN</a>
+            </div>
+            <div class="social">
+                <a class="social-item" href="#">
+                    <img class="social-img" src="~/image/facebook.svg" />
+                </a>
+                <a class="social-item" href="#">
+                    <img class="social-img" src="~/image/instagram.svg" />
+                </a>
+                <a class="social-item" href="#">
+                    <img class="social-img" src="~/image/tiktok.svg" />
+                </a>
+                <a class="social-item" href="#">
+                    <img class="social-img" src="~/image/icons8-shopee-50.png" />
                 </a>
             </div>
         </div>
 
-        <div class="navbar">
-            <a class="nav" href="#">Thời trang nam</a>
-            <a class="nav" href="#">Thời trang nữ</a>
-            <a class="nav" href="#">Thời trang mùa đông</a>
-            <a class="nav" href="#">Thời trang mùa hè</a>
-        </div>
-
     </div>
-  
 
-    <div>
-        @RenderBody()
-    </div>
 </body>
 </html>

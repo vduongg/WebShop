@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Kaiser Store • Đăng ký";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleRegister.css" />
+</head>
+<body>
+    <div class="loginForm">
+        <div class="loginTitle">ĐĂNG KÝ TÀI KHOẢN</div>
+        <div class="user">
+            <span id="user">Tên người dùng</span>
+            <input type="text" oninput="userType(this.value,'user')" value="" />
+        </div>
+        <div class="email">
+            <span id="email">Email</span>
+            <input type="text" oninput="userType(this.value,'email')" value="" />
+        </div>
+        <div class="name">
+            <span id="name">Họ và tên</span>
+            <input type="text" oninput="userType(this.value,'name')" value="" />
+        </div>
+        <div class="pass">
+            <span id="pass">Mật khẩu</span>
+            <input type="password" oninput="userType(this.value,'pass')" value="" />
+        </div> <div class="passrepeat">
+            <span id="passrepeat">Nhập lại mật khẩu</span>
+            <input type="password" oninput="userType(this.value,'passrepeat')" value="" />
+        </div>
+        <div class="buttonOK">
+            <button>Đăng nhập</button>
+        </div>
+        <span>BẠN ĐÃ CÓ TÀI KHOẢN. ĐĂNG NHẬP <a href="/accounts/login">TẠI ĐÂY.</a> </span>
+           
+   
+    </div>
+
+    <script src="~/js/Register.js" ></script>
+</body>
+</html>
