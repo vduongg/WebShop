@@ -51,10 +51,18 @@ namespace KaiserStore.Controllers
             var loginemail = _context.accounts.Where(a => a.email == accounts.user && a.password == accounts.pass).FirstOrDefault();
             if (loginUser != null || loginemail != null)
             {
-               
+                var name = "";
+                if(loginUser != null) {
+                    name = loginUser.name;
+                }
+                if (loginemail != null)
+                {
+                    name = loginemail.name;
+                }
+
                 List<Claim> claims = new List<Claim>() {
                     new Claim(ClaimTypes.NameIdentifier, accounts.user),
-                    new Claim(ClaimTypes.Name,loginUser.name),
+                    new Claim(ClaimTypes.Name,name),
 
                 };
                 ClaimsIdentity claimsidentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);

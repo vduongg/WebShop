@@ -38,10 +38,24 @@ namespace KaiserStore.Areas.Admin.Controllers
         {
             var loginUser = _context.accounts.Where(a => a.username == accounts.user && a.password == accounts.pass).FirstOrDefault();
             var loginemail = _context.accounts.Where(a => a.email == accounts.user && a.password == accounts.pass).FirstOrDefault();
-            if (loginUser != null || loginemail != null)
+            if ( (loginUser != null && loginUser.role == "admin" )|| (loginemail != null && loginemail.role == "admin" ))
             {
-                HttpContext.Session.SetString("AdminSession", loginUser.username);
+                var name = "";
+                if (loginUser != null)
+                {
+                    name = loginUser.name;
+                }
+                if (loginemail != null)
+                {
+                    name = loginemail.name;
+                }
+
+                HttpContext.Session.SetString("AdminSession", name);
                 return RedirectToAction("AdminHome");
+            }
+            else
+            {
+                ViewData["Error"] = "Tài khoản không hợp lệ!!";
             }
               return View();
         }

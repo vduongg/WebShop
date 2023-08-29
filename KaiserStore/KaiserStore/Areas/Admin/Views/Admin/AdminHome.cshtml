@@ -8,13 +8,106 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AdminHome</title>
+    <title>Kaiser Store • Admin</title>
+    <link rel="shortcut icon" href="~/image/logo-header.svg" />
+    <link rel="stylesheet" href="~/css/StyleAdminHome.css" />
 </head>
 <body>
-    <form method="post">
+    <div class="sidebar">
+        <div class="menu">
+            <div class="menu-top">
+                <a href="~/">
+                    <img class="menu-logo" id="menu-logo" src="~/image/logo-header.svg">
+                    <h3>Kaiser Store</h3>  
+                </a>
+
+            </div>
+            <div class="menu-mid">
+                <div class="side__link active" onclick="ClickMenu('home-img')">
+                    <a href="~/Home">
+                        <img id="home-img" src="~/image/home-img-black.svg" />
+                        <span id="title">Quản lý danh mục</span>
+                    </a>
+                </div>
+                <div class="side__link" onclick="ClickMenu('search-img')" id="popup-menu">
+                    <a href="#" id="menu-link">
+
+                        <img src="~/image/search-img-white.svg" id="search-img" />
+                        <span id="title">Quản lý sản phẩm</span>
+                    </a>
+                </div>
+                <div class="side__link" onclick="ClickMenu('discover-img')">
+                    <a href="#">
+
+                        <img src="~/image/discover-img-white.svg" id="discover-img" />
+                        <span id="title">Quản lý đơn hàng</span>
+                    </a>
+                </div>
+                <div class="side__link" onclick="ClickMenu('reel-img')">
+                    <a href="#">
+
+                        <img src="~/image/reel-img-white.svg" id="reel-img" />
+                        <span id="title">Quản lý kho hàng</span>
+                    </a>
+                </div>
+                <div class="side__link" onclick="ClickMenu('mess-img')">
+                    <a href="#">
+
+                        <img src="~/image/mess-img-white.svg" id="mess-img" />
+                        <span id="title">Báo cáo doanh thu</span>
+                    </a>
+                </div>
+                <div class="side__link" onclick="ClickMenu('love-img')" id="popup-menu">
+                    <a href="#" id="menu-link">
+
+                        <img src="~/image/love-img-white.svg" id="love-img" />
+                        <span id="title">Thông báo</span>
+                    </a>
+                </div>
+                <div class="side__link" onclick="ClickMenu('add-img')">
+                    <a href="#">
+
+                        <img src="~/image/add-img-white.svg" id="add-img" />
+                        <span id="title">Tạo</span>
+                    </a>
+                </div>
+                <div class="side__link" onclick="clickAvatar()">
+                    <a href="#">
+                        <img id="avatar" src="~/image/avatar.jpg" width="24px" height="24px" style="border-radius: 15px" />
+                        <span id="title">Trang cá nhân</span>
+                    </a>
+                </div>
+            </div>
+            <div class="menu-bot">
+                <div class="side__link" onclick="ClickMenu('more-img')">
+                    <a href="#">
+                        <img src="~/image/more-img-white.svg" id="more-img" />
+                        <span id="title">Xem thêm</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="love" id="love">
+            <span id="love-title">Thông báo</span>
+            <span id="love-span">Tuần này</span>
+        </div>
+
+        <div class="search" id="search">
+            <span id="search-title">Tìm kiếm</span>
+            <input id="search-input" type="text" placeholder="Tìm kiếm" />
+            <div id="line-search"></div>
+            <span id="search-span">Gần đây</span>
+        </div>
+ </div>
+
+
+ 
+    
+ @*    <form method="post">
         <button type="submit" asp-area="Admin" asp-action="AdminLogOut">Đăng xuất</button>
     </form>
- 
-    <h2>Admin Home</h2>
+  *@
+    <script src="~/js/AdminHome.js"></script>
 </body>
 </html>
