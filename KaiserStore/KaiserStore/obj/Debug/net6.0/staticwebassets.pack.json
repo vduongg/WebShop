@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminHome.css",
+      "PackagePath": "staticwebassets\\css\\StyleAdminHome.css"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminLogin.css",
+      "PackagePath": "staticwebassets\\css\\StyleAdminLogin.css"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleHome.css",
       "PackagePath": "staticwebassets\\css\\StyleHome.css"
     },
@@ -17,12 +25,20 @@
       "PackagePath": "staticwebassets\\css\\_LayoutNavbar.css"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\_LayoutSidebar.css",
+      "PackagePath": "staticwebassets\\css\\_LayoutSidebar.css"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\add-cart.svg",
       "PackagePath": "staticwebassets\\image\\add-cart.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\bangdieukhien.svg",
+      "PackagePath": "staticwebassets\\image\\bangdieukhien.svg"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\box.svg",
@@ -41,6 +57,22 @@
       "PackagePath": "staticwebassets\\image\\cart-shopping-solid.svg"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\close.svg",
+      "PackagePath": "staticwebassets\\image\\close.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\danhmuc.svg",
+      "PackagePath": "staticwebassets\\image\\danhmuc.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\doanhthu.svg",
+      "PackagePath": "staticwebassets\\image\\doanhthu.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\donhang.svg",
+      "PackagePath": "staticwebassets\\image\\donhang.svg"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\door.svg",
       "PackagePath": "staticwebassets\\image\\door.svg"
     },
@@ -55,6 +87,10 @@
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\instagram.svg",
       "PackagePath": "staticwebassets\\image\\instagram.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\khohang.svg",
+      "PackagePath": "staticwebassets\\image\\khohang.svg"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\lock-solid.svg",
@@ -73,6 +109,10 @@
       "PackagePath": "staticwebassets\\image\\product.png"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\sanpham.svg",
+      "PackagePath": "staticwebassets\\image\\sanpham.svg"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\ship.svg",
       "PackagePath": "staticwebassets\\image\\ship.svg"
     },
@@ -85,6 +125,14 @@
       "PackagePath": "staticwebassets\\image\\tiktok.svg"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\AdminHome.js",
+      "PackagePath": "staticwebassets\\js\\AdminHome.js"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\AdminLogin.js",
+      "PackagePath": "staticwebassets\\js\\AdminLogin.js"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\Home.js",
       "PackagePath": "staticwebassets\\js\\Home.js"
     },
@@ -95,6 +143,10 @@
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\Register.js",
       "PackagePath": "staticwebassets\\js\\Register.js"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\Sidebar.js",
+      "PackagePath": "staticwebassets\\js\\Sidebar.js"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\lib\\bootstrap\\LICENSE",

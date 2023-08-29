@@ -1,0 +1,81 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/image/logo-header.svg" />
+    <link rel="stylesheet" href="~/css/_LayoutSidebar.css" />
+</head>
+<body>
+    <div class="sidebar">
+        <div class="menu">
+            <div class="menu-top">
+                <a href="~/Admin/Home">
+                    <img class="menu-logo" id="menu-logo" src="~/image/logo-header.svg">
+                    <h3>Kaiser Store</h3>
+                </a>
+
+            </div>
+            <div class="menu-mid">
+                <div class="side__link active">
+                    <a href="#">
+                        <img id="home-img" src="~/image/bangdieukhien.svg" />
+                        <span id="title">Bảng điều khiển</span>
+                    </a>
+                </div>
+                <div class="side__link">
+                    <a href="#">
+                        <img id="home-img" src="~/image/danhmuc.svg" />
+                        <span id="title">Quản lý danh mục</span>
+                    </a>
+                </div>
+                <div class="side__link">
+                    <a href="#" id="menu-link">
+
+                        <img src="~/image/sanpham.svg" />
+                        <span id="title">Quản lý sản phẩm</span>
+                    </a>
+                </div>
+                <div class="side__link">
+                    <a href="#">
+
+                        <img src="~/image/donhang.svg" />
+                        <span id="title">Quản lý đơn hàng</span>
+                    </a>
+                </div>
+                <div class="side__link">
+                    <a href="#">
+
+                        <img src="~/image/khohang.svg" />
+                        <span id="title">Quản lý kho hàng</span>
+                    </a>
+                </div>
+                <div class="side__link">
+                    <a href="#">
+
+                        <img src="~/image/doanhthu.svg" />
+                        <span id="title">Báo cáo doanh thu</span>
+                    </a>
+                </div>
+            </div>
+            <div class="menu-bot">
+                <div class="side__link">
+                    <a asp-area="admin" asp-action="AdminLogOut">
+                        <img src="~/image/close.svg" />
+                        <span id="title">Đăng xuất</span>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+        <script src="~/js/Sidebar.js"></script>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

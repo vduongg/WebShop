@@ -1,0 +1,140 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
+ 
+}
+
+.sidebar {
+    display: flex;
+    width: 100px;
+    height: 100vh;
+    position: fixed;
+    transition: 0.4s;
+    border-right: 1px solid #c6c5c5;
+    z-index: 1;
+}
+
+.menu {
+    display: flex;
+    height: 900px;
+    padding: 8px 12px 20px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.menu-top {
+    padding: 25px 12px 16px;
+    margin-bottom: 19px;
+}
+
+    .menu-top h3 {
+        display: none;
+    }
+
+.side__link img {
+    height: 24px;
+    width: 24px;
+}
+
+.menu-top a {
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+}
+
+.menu-mid {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+    .menu-mid div, .menu-bot div {
+        padding: 12px;
+        margin: 4px;
+    }
+
+
+    .menu-mid a, .menu-bot a {
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .menu-mid :hover, .menu-bot :hover {
+        background-color: rgb(239, 239, 239);
+        border-radius: 8px;
+        zoom: 1.005;
+    }
+
+    .menu-mid span, .menu-bot span {
+        display: none;
+    }
+
+.content {
+    margin-left: 240px;
+}
+
+.active {
+    font-size: 16px;
+    font-weight: 700;
+    color: red;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.menu-logo {
+    height: 60px;
+}
+
+@media (min-width: 1500px) {
+    .menu-mid span, .menu-bot span {
+        display: block;
+        padding-left: 16px;
+        color: black;
+    }
+
+    .menu-top h3 {
+        display: block;
+    }
+
+    .sidebar {
+        width: 240px;
+    }
+
+
+    .active {
+        border: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+.sidebar.close .active {
+    border: 1px solid rgb(219, 219, 219);
+}
+
+.sidebar.close h3 {
+    display: none;
+}
+
+.sidebar.close {
+    width: 100px;
+}
+
+
+    .sidebar.close .menu-mid span, .sidebar.close .menu-bot span {
+        display: none;
+    }

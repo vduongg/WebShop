@@ -14,6 +14,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
 
         [Area("Admin")]
+        [Route("Admin/Home")]
         public IActionResult AdminHome()
         {
             if(HttpContext.Session.GetString("AdminSession") == null)
@@ -28,11 +29,19 @@ namespace KaiserStore.Areas.Admin.Controllers
             return View();
         }
         [Area("Admin")]
+        [Route("/Admin/Login")]
         public IActionResult AdminLogin()
         {
+            if (HttpContext.Session.GetString("AdminSession") != null)
+            {
+                return RedirectToAction("AdminHome");
+            }
+         
             return View();
+  
         }
         [Area("Admin")]
+        [Route("/Admin/Login")]
         [HttpPost]
         public IActionResult AdminLogin(LoginModel accounts)
         {
@@ -60,15 +69,41 @@ namespace KaiserStore.Areas.Admin.Controllers
               return View();
         }
         [Area("Admin")]
-        [HttpPost]
+      
         public IActionResult AdminLogOut()
         {
-            if (HttpContext.Session.GetString("AdminSession") != null)
-            {
-                HttpContext.Session.Remove("AdminSession");
-                return RedirectToAction("AdminLogin");
-            }
+          HttpContext.Session.Remove("AdminSession");
+          return RedirectToAction("AdminLogin");
+       
+        }
+        [Area("Admin")]
+        [Route("/Admin/DanhMuc")]
+        public IActionResult DanhMuc()
+        {
+           return View();
+
+        }
+        [Area("Admin")]
+        [Route("/Admin/SanPham")]
+        public IActionResult TongSanPham()
+        {
             return View();
+
+        }
+        [Area("Admin")]
+        [Route("/Admin/SanPham/{id}")]
+        public IActionResult SanPham()
+        {
+            return View();
+
+        }
+        [Area("Admin")]
+
+        [Route("/Admin/DonHang")]
+        public IActionResult DonHang()
+        {
+            return View();
+
         }
     }
 }
