@@ -69,41 +69,13 @@ namespace KaiserStore.Areas.Admin.Controllers
               return View();
         }
         [Area("Admin")]
-      
         public IActionResult AdminLogOut()
         {
           HttpContext.Session.Remove("AdminSession");
-          return RedirectToAction("AdminLogin");
+          return RedirectToAction("AdminLogin", "Admin");
        
         }
-        [Area("Admin")]
-        [Route("/Admin/DanhMuc")]
-        public IActionResult DanhMuc()
-        {
-           return View();
 
-        }
-        [Area("Admin")]
-        [Route("/Admin/SanPham")]
-        public IActionResult TongSanPham()
-        {
-            return View();
 
-        }
-        [Area("Admin")]
-        [Route("/Admin/SanPham/{id}")]
-        public IActionResult SanPham()
-        {
-            return View();
-
-        }
-        [Area("Admin")]
-
-        [Route("/Admin/DonHang")]
-        public IActionResult DonHang()
-        {
-            return View();
-
-        }
     }
 }

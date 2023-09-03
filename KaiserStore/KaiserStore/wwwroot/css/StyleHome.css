@@ -14,14 +14,17 @@
   
 }
 .slide-items img{
-    width: 100%;
     height: 600px;
 }
 .item{
-    display: none;
+    transition-duration: 1s;
+    width: 0;
+    /*display: none;*/
 }
 .active {
-    display: block;
+    transition-duration: 1s;
+    width: 100%;
+    /*display: block;*/
 }
 .slide-button {
     position: absolute;

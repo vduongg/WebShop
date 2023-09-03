@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X1ldUMSbEaVlsxchXc0fSYP4EMkwiiQJuxxD+uT6iTA=",
+  "Hash": "Flvy5OImShpKa+Yxdl6LlPKQBprEca/8nYmtab/V/Qo=",
   "Source": "KaiserStore",
   "BasePath": "_content/KaiserStore",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\_LayoutSidebar.css"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminCategory.css",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "css/StyleAdminCategory.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleAdminCategory.css"
     },
     {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminHome.css",
@@ -272,6 +289,23 @@
       "OriginalItemSpec": "wwwroot\\image\\close.svg"
     },
     {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\close-popup.svg",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "image/close-popup.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\close-popup.svg"
+    },
+    {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\danhmuc.svg",
       "SourceId": "KaiserStore",
       "SourceType": "Discovered",
@@ -287,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\danhmuc.svg"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\delete.svg",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "image/delete.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\delete.svg"
     },
     {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\doanhthu.svg",
@@ -338,6 +389,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\door.svg"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\edit.svg",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "image/edit.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\edit.svg"
     },
     {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\facebook.svg",
@@ -542,6 +610,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\tiktok.svg"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\AdminCategory.js",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "js/AdminCategory.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\AdminCategory.js"
     },
     {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\AdminHome.js",

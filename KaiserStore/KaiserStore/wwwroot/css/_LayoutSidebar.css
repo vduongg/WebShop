@@ -31,9 +31,14 @@
     margin-bottom: 19px;
 }
 
-    .menu-top h3 {
-        display: none;
-    }
+.menu-top h3 {
+    display: none;
+}
+
+.side__link{
+    display: flex;
+    
+}
 
 .side__link img {
     height: 24px;
@@ -52,34 +57,35 @@
     flex-direction: column;
     flex-grow: 1;
     width: 100%;
+    align-items: center;
 }
 
-    .menu-mid div, .menu-bot div {
-        padding: 12px;
-        margin: 4px;
-    }
+.menu-mid div, .menu-bot div {
+    padding: 12px;
+    margin: 4px;
+}
 
 
-    .menu-mid a, .menu-bot a {
-        justify-content: center;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        text-decoration: none;
-    }
+.menu-mid a, .menu-bot a {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+}
 
-    .menu-mid :hover, .menu-bot :hover {
-        background-color: rgb(239, 239, 239);
-        border-radius: 8px;
-        zoom: 1.005;
-    }
+.menu-mid :hover, .menu-bot :hover {
+    background-color: rgb(239, 239, 239);
+    border-radius: 8px;
+    zoom: 1.005;
+}
 
-    .menu-mid span, .menu-bot span {
-        display: none;
-    }
+.menu-mid span, .menu-bot span {
+    display: none;
+}
 
 .content {
-    margin-left: 240px;
+    margin-left: 120px;
 }
 
 .active {
@@ -96,6 +102,14 @@
 }
 
 @media (min-width: 1500px) {
+    .menu-mid {
+        display: flex;
+        align-items: flex-start;
+      
+    }
+    .side__link{
+        width: 85%;
+    }
     .menu-mid span, .menu-bot span {
         display: block;
         padding-left: 16px;
@@ -114,13 +128,13 @@
     .active {
         border: none;
     }
+    .content {
+        margin-left: 260px;
+    }
+   
 }
 
-@media (max-width: 800px) {
-    .sidebar {
-        display: none;
-    }
-}
+
 
 .sidebar.close .active {
     border: 1px solid rgb(219, 219, 219);
@@ -135,6 +149,10 @@
 }
 
 
-    .sidebar.close .menu-mid span, .sidebar.close .menu-bot span {
-        display: none;
-    }
+.sidebar.close .menu-mid span, .sidebar.close .menu-bot span {
+    display: none;
+}
+.content {
+    display: flex;
+    width: 80%;
+}

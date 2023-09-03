@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminCategory.css",
+      "PackagePath": "staticwebassets\\css\\StyleAdminCategory.css"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminHome.css",
       "PackagePath": "staticwebassets\\css\\StyleAdminHome.css"
     },
@@ -57,12 +61,20 @@
       "PackagePath": "staticwebassets\\image\\cart-shopping-solid.svg"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\close-popup.svg",
+      "PackagePath": "staticwebassets\\image\\close-popup.svg"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\close.svg",
       "PackagePath": "staticwebassets\\image\\close.svg"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\danhmuc.svg",
       "PackagePath": "staticwebassets\\image\\danhmuc.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\delete.svg",
+      "PackagePath": "staticwebassets\\image\\delete.svg"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\doanhthu.svg",
@@ -75,6 +87,10 @@
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\door.svg",
       "PackagePath": "staticwebassets\\image\\door.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\edit.svg",
+      "PackagePath": "staticwebassets\\image\\edit.svg"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\facebook.svg",
@@ -123,6 +139,10 @@
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\image\\tiktok.svg",
       "PackagePath": "staticwebassets\\image\\tiktok.svg"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\AdminCategory.js",
+      "PackagePath": "staticwebassets\\js\\AdminCategory.js"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\js\\AdminHome.js",

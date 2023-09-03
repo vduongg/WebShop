@@ -4,22 +4,24 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using KaiserStore.Data;
 
 namespace KaiserStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
+
         [Route("/")]
-        public IActionResult Home()
+        public async Task<IActionResult> Home()
         {
-           
-           
+            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            ViewData["category"] = category;
             return View();
         }
         public async Task<IActionResult> LogOut()

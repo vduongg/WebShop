@@ -1,0 +1,19 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model KaiserStore.Models.CategoryVM
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<div style="width: 100%; height: 90vh; display: flex; justify-content: center; align-items: center;">
+
+    <form style="display: flex; flex-direction: column; align-items: center;" asp-action="Delete" method="post">
+        <h3>Bạn có chắc chắn muốn xóa danh mục không?</h3>
+        <input type="hidden" asp-for="id" />
+        <input type="hidden" asp-for="namecategory" />
+        <input type="hidden" value="false" asp-for="active" />
+        <button type="submit" style="padding: 10px; margin: 10px;">Xóa danh mục</button>
+        <span style="color: red;">@ViewData["Status"]</span>
+    </form>
+</div>

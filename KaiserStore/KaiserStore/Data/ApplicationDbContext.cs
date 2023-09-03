@@ -8,5 +8,6 @@ namespace KaiserStore.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
         public DbSet<AccountsVM> accounts {get; set; }
+        public DbSet<CategoryVM> category { get; set; }
     }
 }

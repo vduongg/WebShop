@@ -46,6 +46,24 @@ namespace KaiserStore.Migrations
 
                     b.ToTable("accounts");
                 });
+
+            modelBuilder.Entity("KaiserStore.Models.CategoryVM", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("active")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("namecategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("category");
+                });
 #pragma warning restore 612, 618
         }
     }

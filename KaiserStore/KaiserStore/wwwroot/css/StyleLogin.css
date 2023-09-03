@@ -64,6 +64,7 @@
 }
 
 .buttonOK :hover {
+    transition-duration: 1s;
     color: white;
     background-color: black;
 }

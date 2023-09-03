@@ -17,8 +17,10 @@ namespace KaiserStore.Controllers
             _context = context;
         }
        
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
+            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            ViewData["category"] = category;
             ClaimsPrincipal claimUser = HttpContext.User;
             if (claimUser.Identity.IsAuthenticated)
             {
@@ -32,8 +34,10 @@ namespace KaiserStore.Controllers
 
         }
         
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
+            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            ViewData["category"] = category;
             ClaimsPrincipal claimUser = HttpContext.User;
             if(claimUser.Identity.IsAuthenticated) {
                 return RedirectToAction("Home", "Home");

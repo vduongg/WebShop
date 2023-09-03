@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+}
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -53,10 +56,12 @@
             </div>
 
             <div class="navbar">
-                <a class="nav" href="#">Thời trang nam</a>
-                <a class="nav" href="#">Thời trang nữ</a>
-                <a class="nav" href="#">Thời trang mùa đông</a>
-                <a class="nav" href="#">Thời trang mùa hè</a>
+                @foreach (var item in categories)
+                {
+                    <a class="nav" href="@item.id">@item.namecategory</a>
+                    
+                }
+              
             </div>
             
         </div>

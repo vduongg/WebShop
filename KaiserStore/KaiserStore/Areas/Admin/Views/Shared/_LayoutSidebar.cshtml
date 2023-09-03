@@ -20,44 +20,87 @@
 
             </div>
             <div class="menu-mid">
-                <div class="side__link active">
-                    <a href="#">
-                        <img id="home-img" src="~/image/bangdieukhien.svg" />
-                        <span id="title">Bảng điều khiển</span>
-                    </a>
-                </div>
-                <div class="side__link">
-                    <a href="#">
-                        <img id="home-img" src="~/image/danhmuc.svg" />
-                        <span id="title">Quản lý danh mục</span>
-                    </a>
-                </div>
-                <div class="side__link">
-                    <a href="#" id="menu-link">
+                @if (ViewData["page"] == "home")
+                {
+                    <div class="side__link active">
+                        <a href="~/admin/home">
+                            <img id="home-img" src="~/image/bangdieukhien.svg" />
+                            <span id="title">Bảng điều khiển</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="side__link">
+                        <a href="~/admin/home">
+                            <img id="home-img" src="~/image/bangdieukhien.svg" />
+                            <span id="title">Bảng điều khiển</span>
+                        </a>
+                    </div>
+                }
+                @if (ViewData["page"] == "category")
+                {
 
-                        <img src="~/image/sanpham.svg" />
-                        <span id="title">Quản lý sản phẩm</span>
-                    </a>
-                </div>
+                    <div class="side__link active">
+                        <a href="~/admin/category">
+                            <img id="home-img" src="~/image/danhmuc.svg" />
+                            <span id="title">Danh mục</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="side__link">
+                        <a href="~/admin/category">
+                            <img id="home-img" src="~/image/danhmuc.svg" />
+                            <span id="title">Danh mục</span>
+                        </a>
+                    </div>
+                }
+                @if (ViewData["page"] == "product")
+                {
+
+                    <div class="side__link active">
+                        <a href="" id="menu-link">
+
+                            <img src="~/image/sanpham.svg" />
+                            <span id="title">Sản phẩm</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="side__link">
+                        <a href="~/admin/product" id="menu-link">
+
+                            <img src="~/image/sanpham.svg" />
+                            <span id="title">Sản phẩm</span>
+                        </a>
+                    </div>
+                }
+              
+
+
                 <div class="side__link">
                     <a href="#">
 
                         <img src="~/image/donhang.svg" />
-                        <span id="title">Quản lý đơn hàng</span>
+                        <span id="title">Đơn hàng</span>
                     </a>
                 </div>
                 <div class="side__link">
                     <a href="#">
 
                         <img src="~/image/khohang.svg" />
-                        <span id="title">Quản lý kho hàng</span>
+                        <span id="title">Kho hàng</span>
                     </a>
                 </div>
                 <div class="side__link">
                     <a href="#">
 
                         <img src="~/image/doanhthu.svg" />
-                        <span id="title">Báo cáo doanh thu</span>
+                        <span id="title">Doanh thu</span>
                     </a>
                 </div>
             </div>
@@ -74,7 +117,7 @@
         </div>
         <script src="~/js/Sidebar.js"></script>
     </div>
-    <div>
+    <div class="content">
         @RenderBody()
     </div>
 </body>
