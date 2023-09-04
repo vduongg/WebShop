@@ -1,0 +1,23 @@
+﻿@model IEnumerable<KaiserStore.Models.ProductsVM>;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+@foreach(var item in Model)
+{
+    <span>@item.Id/ </span>
+ 
+    <span>@item.producdName /</span>
+
+    <span>@string.Format("{0:#,0}",int.Parse(item.producdPrice))/ </span>
+
+    <span>@item.productType /</span>
+
+
+
+    <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))" width="250" height="250" />
+}
+

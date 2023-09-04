@@ -9,5 +9,6 @@ namespace KaiserStore.Data
         { }
         public DbSet<AccountsVM> accounts {get; set; }
         public DbSet<CategoryVM> category { get; set; }
+        public DbSet<ProductsVM> product { get; set; }
     }
 }

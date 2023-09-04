@@ -1,0 +1,42 @@
+﻿@using KaiserStore.Models;
+@{
+    List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+}
+@model KaiserStore.Models.ProductsVM;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+</head>
+<body>
+    
+    <form class="productForm" enctype="multipart/form-data" method="post">
+        <span>THÊM SẢN PHẨM</span>
+        <input placeholder="Tên sản phẩm" asp-for="producdName" />
+        <input placeholder="Giá sản phẩm" asp-for="producdPrice" />
+        <select asp-for="productType">
+            @foreach( var item in categories )
+            {
+                <option>@item.namecategory</option>
+                
+            }
+        </select>
+        <input type="file" asp-for="file" />
+        <button type="submit">Upload</button>
+        <span>@ViewData["Validate"]</span>
+    </form>
+
+   
+
+   
+</body>
+</html>
+
