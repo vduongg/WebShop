@@ -1,8 +1,88 @@
-﻿
+﻿@model List<KaiserStore.Models.ProductsVM>;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
     ViewData["Title"] = "Product";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }
+<!DOCTYPE html>
 
-<h1>Product</h1>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleAdminCategory.css" />
+</head>
+<body>
+    <div class="category">
+        <div class="category-header">
+            <h3>
+                Danh mục sản phẩm
+            </h3>
+            <div class="right">
+                <div class="search-input">
+                    <input type="text" placeholder="Tìm kiếm..." />
+                </div>
+                <form class="add-category" asp-action="Add">
+                    <button type="submit"> Thêm sản phẩm</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="category-body">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>STT</th>
+                        <th>ID</th>
+                        <th>TÊN SẢN PHẨM</th>
+                        <th>GIÁ SẢN PHẨM</th>
+                        <th>LOẠI SẢN PHẨM</th>
+                        <th>ẢNH SẢN PHẨM</th>
+                        <th>HÀNH ĐỘNG</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for( var i = Model.Count() - 1; i >= 0; i-- ) 
+                    {
+                        <form asp-action="Category" method="post">
+                        <tr>
+
+                            <td>@(Model.Count() - i)</td>
+                            <td>@Model[i].Id</td>
+                            <td>@Model[i].producdName</td>
+                            <td>@string.Format("{0:#,0}",int.Parse(Model[i].producdPrice))</td>
+                            <td>@Model[i].productType</td>
+                            <td>
+                                <div style="display: flex; width: 100px; height: 100px">
+                                    <img width="100" height="100"  src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model[i].dataimage))" />
+                                </div>
+                               
+                            </td>
+                            <td>
+                                <div style="display: flex; justify-content: center">
+                                    <a asp-route-id="@Model[i].Id" asp-action="Edit"><img src="~/image/edit.svg"  width="24" height="24"/></a>
+                                    <a asp-route-id="@Model[i].Id" asp-action="Delete"><img src="~/image/delete.svg" width="24" height="24" /></a>
+                                </div>
+                               
+                            </td>
+                        </tr>
+
+
+                        </form>
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script src="~/js/AdminCategory.js"></script>
+</body>
+</html>
 

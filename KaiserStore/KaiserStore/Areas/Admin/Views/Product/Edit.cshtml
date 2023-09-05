@@ -1,23 +1,96 @@
-﻿@model IEnumerable<KaiserStore.Models.ProductsVM>;
+﻿@model KaiserStore.Models.ProductsVM;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using KaiserStore.Models;
+@{
+    List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+}
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }
+<!DOCTYPE html>
 
-@foreach(var item in Model)
-{
-    <span>@item.Id/ </span>
- 
-    <span>@item.producdName /</span>
+<html>
+<head>
+    <style>
+        .wrapper{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        div{
+            margin-top: 5px;
+        }
+        form {
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            padding: 5px;
+           
+        }
+        span {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
 
-    <span>@string.Format("{0:#,0}",int.Parse(item.producdPrice))/ </span>
 
-    <span>@item.productType /</span>
+    <div class="wrapper">
+        <form action="Edit" enctype="multipart/form-data" method="post">
+
+            <h3>Sửa sản phẩm</h3>
+            <input asp-for="Id" type="hidden" />
+            <div>
+                <span>Tên sản phẩm</span>
+                <input asp-for="producdName" />
+            </div>
+            <div>
+                <span>Giá sản phẩm</span>
+                <input asp-for="producdPrice" />
+            </div>
+            <div>
+
+                <span>Loại sản phẩm</span>
+                <select asp-for="productType">
+                    <option>@Model.productType</option>
+                    @foreach (var item in categories)
+                    {
+                        <option>@item.namecategory</option>
+                       
+                    }
+                </select>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <span>Ảnh sản phẩm</span>
+                <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model.dataimage))" width="250" height="250" />
+                <input type="hidden" asp-for="dataimage" value="@Convert.ToBase64String(Model.dataimage)" />
+                <input type="file" asp-for="file" />
+            </div>
+
+            <button type="submit">Lưu sản phẩm  </button>
+
+        </form>
 
 
 
-    <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))" width="250" height="250" />
-}
+    </div>
+
+</body>
+</html>
+
+
+
+
+
 

@@ -17,7 +17,8 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Route("/Admin/Product")]
         public IActionResult Product()
         {
-            return View();
+            var product = _context.product.ToList();
+            return View(product);
         }
 
         [Area("Admin")]
@@ -47,23 +48,50 @@ namespace KaiserStore.Areas.Admin.Controllers
                 }
                   _context.product.Add(p);
                  _context.SaveChanges();
-                ViewData["Validate"] = "123456";
                 return RedirectToAction("Product");
 
-            }
-            else {
-                   ViewData["Validate"] = "Abcd";
             }
             return View();
         }
 
         [Area("Admin")]
         [Route("/Admin/Product/Edit")]
-        public IActionResult Edit()
+        public  IActionResult Edit(int id)
         {
-            var product = _context.product;
-            return View(product);
+            var category = _context.category.ToList();
+            ViewData["category"] = category;
+            var productsVM =  _context.product.Find(id);
+            return View(productsVM);
+            
         }
+        [HttpPost]
+        [Area("Admin")]
+        [Route("/Admin/Product/Edit")]
+        public async Task<IActionResult> Edit(ProductsVM productVM)
+        {
+          
+            var file = productVM.file;
+            if (file != null)
+            {
+                var p = productVM;
+                using (var target = new MemoryStream())
+                {
+                    file.CopyTo(target);
+                    p.dataimage = target.ToArray();
+                }
+                _context.product.Update(p);
+                _context.SaveChanges();
+                return RedirectToAction("Product");
+
+            }
+            else
+            {
+                _context.product.Update(productVM);
+                _context.SaveChanges();
+                return RedirectToAction("Product");
+            }   
+        }
+
 
         [Area("Admin")]
         [Route("/Admin/Product/Delete")]

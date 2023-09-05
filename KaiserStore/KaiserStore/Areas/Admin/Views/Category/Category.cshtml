@@ -53,8 +53,10 @@
                             <td>@Model[i].id </td>
                             <td>@Model[i].namecategory</td>
                             <td>
-                                <a asp-route-id="@Model[i].id" asp-action="Edit" ><img src="~/image/edit.svg" /></a>
-                                <a asp-route-id="@Model[i].id" asp-action="Delete" ><img src="~/image/delete.svg" /></a>
+                                <div style="display: flex; justify-content: center">
+                                    <a asp-route-id="@Model[i].id" asp-action="Edit"><img src="~/image/edit.svg" width="24" height="24" /></a>
+                                    <a asp-route-id="@Model[i].id" asp-action="Delete"><img src="~/image/delete.svg" width="24" height="24" /></a>
+                                </div>
                             </td>
                         </tr>
 

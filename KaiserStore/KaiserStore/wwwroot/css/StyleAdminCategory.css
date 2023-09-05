@@ -41,22 +41,33 @@ tr:hover td {
     background-color: rgb(239, 239, 239);
     cursor: pointer;
 }
-td img {
-    width: 16px;
-    height: 16px;
-}
-td button{
-    width: 32px;
-    height: 32px;
+
+
+
+td button {
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     border: none;
     background-color: transparent;
     border-radius: 6px;
 }
-td button:nth-child(1) {
+td a:nth-child(1) {
+    display: flex;
+    background-color: red;
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    justify-content: center;
     background-color: yellow;
 }
-td button:nth-child(2) {
+td a:nth-child(2) {
+    display: flex;
+    background-color: red;
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    justify-content: center;
     background-color: red;
 }
 .search-input input{

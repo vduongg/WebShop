@@ -17,22 +17,24 @@
     
 </head>
 <body>
+    <div style="width: 100%; height: 100vh; display: flex; align-items:center; justify-content: center;">
+        <form style="display: flex; flex-direction: column; align-items: center;" class="productForm" enctype="multipart/form-data" method="post">
+            <h3 style="margin-bottom: 10px"> THÊM SẢN PHẨM</h3>
+            <input style="margin-bottom: 10px" placeholder="Tên sản phẩm" asp-for="producdName" />
+            <input style="margin-bottom: 10px" placeholder="Giá sản phẩm" asp-for="producdPrice" />
+            <select style="margin-bottom: 10px" asp-for="productType">
+                @foreach (var item in categories)
+                {
+                    <option>@item.namecategory</option>
+
+                }
+            </select>
+            <input style="margin-bottom: 10px" type="file" asp-for="file" />
+            <button style="margin-bottom: 10px" type="submit">Upload</button>
+           
+        </form>
+    </div>
     
-    <form class="productForm" enctype="multipart/form-data" method="post">
-        <span>THÊM SẢN PHẨM</span>
-        <input placeholder="Tên sản phẩm" asp-for="producdName" />
-        <input placeholder="Giá sản phẩm" asp-for="producdPrice" />
-        <select asp-for="productType">
-            @foreach( var item in categories )
-            {
-                <option>@item.namecategory</option>
-                
-            }
-        </select>
-        <input type="file" asp-for="file" />
-        <button type="submit">Upload</button>
-        <span>@ViewData["Validate"]</span>
-    </form>
 
    
 
