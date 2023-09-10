@@ -3,6 +3,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
+    ViewData["page"] = "product";
     ViewData["Title"] = "Product";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }
@@ -11,12 +12,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/StyleAdminCategory.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <body>
     <div class="category">
         <div class="category-header">
             <h3>
-                Danh mục sản phẩm
+               Sản phẩm
             </h3>
             <div class="right">
                 <div class="search-input">
@@ -64,8 +66,8 @@
                             </td>
                             <td>
                                 <div style="display: flex; justify-content: center">
-                                    <a asp-route-id="@Model[i].Id" asp-action="Edit"><img src="~/image/edit.svg"  width="24" height="24"/></a>
-                                    <a asp-route-id="@Model[i].Id" asp-action="Delete"><img src="~/image/delete.svg" width="24" height="24" /></a>
+                                    <a asp-route-id="@Model[i].Id" asp-action="Edit"><i class="fa-solid fa-pen-to-square" style="color: black;"></i></a>
+                                    <a asp-route-id="@Model[i].Id" asp-action="Delete"><i class="fa-solid fa-trash-can" style="color: black;"></i></a>
                                 </div>
                                
                             </td>

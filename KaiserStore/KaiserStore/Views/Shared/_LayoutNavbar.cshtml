@@ -58,7 +58,7 @@
             <div class="navbar">
                 @foreach (var item in categories)
                 {
-                    <a class="nav" href="@item.id">@item.namecategory</a>
+                    <a class="nav" asp-route-id="@item.id" asp-action="Category">@item.namecategory</a>
                     
                 }
               

@@ -52,6 +52,9 @@ td button {
     background-color: transparent;
     border-radius: 6px;
 }
+td a {
+    border-radius: 10px;
+}
 td a:nth-child(1) {
     display: flex;
     background-color: red;
@@ -60,6 +63,7 @@ td a:nth-child(1) {
     align-items: center;
     justify-content: center;
     background-color: yellow;
+    margin-right: 10px;
 }
 td a:nth-child(2) {
     display: flex;

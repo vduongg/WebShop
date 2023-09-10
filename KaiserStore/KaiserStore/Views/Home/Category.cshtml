@@ -1,0 +1,61 @@
+﻿@model List<KaiserStore.Models.ProductsVM>;
+@{
+    List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+}
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Category.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="category-left">
+            
+            <h3> <i class="fa-solid fa-filter fa-xl"></i> Lọc sản phẩm</h3>
+            <div class="filter">
+
+            </div>
+        </div>
+        <div class="category-right">
+          
+                @foreach (var item in Model)
+                {
+                    <div class="wrapper-product">
+                        <a href="" class="product">
+                            <div class="product-img">
+                                <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))" width="100%"/>
+                            </div>
+
+                            <span class="product-name">@item.producdName </span>
+                            <span class="product-price">@item.producdPrice</span>
+                            <span class="product-sold">Đã bán: 16 sản phẩm</span>
+                            @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
+                        </a>
+
+                    </div>
+
+                
+                   
+                }
+            
+
+           
+         
+           
+        </div>
+    </div>
+ 
+
+    
+   
+
+</body>
+</html>

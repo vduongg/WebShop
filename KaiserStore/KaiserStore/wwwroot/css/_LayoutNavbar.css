@@ -36,6 +36,8 @@ a{
 }   
 .navbar :hover{
     font-weight: 700;
+    text-decoration: underline;
+    color: #ea2567;
 }
 
 

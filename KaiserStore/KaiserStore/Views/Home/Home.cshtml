@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<KaiserStore.Models.ProductsVM>;
+
+@{
     List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
 }
 
@@ -11,6 +13,7 @@
 
 <html>
 <head>
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/StyleHome.css" />
 </head>
 <body>
@@ -34,22 +37,22 @@
         </div>
         <div class="policy">
             <div class="policy-item">
-                <img class="policy-img" src="~/image/box.svg"/>
+            <i class="fa-solid fa-box-archive fa-2xl"></i>
                 <span class="policy-title">MIỄN PHÍ GIAO HÀNG</span>
                 <span class="content-title">Đối với hóa đơn từ 500.000 VNĐ đã thanh toán tại Hà nội</span>
             </div>
              <div class="policy-item">
-                <img class="policy-img" src="~/image/ship.svg"/>
+                <i class="fa-solid fa-truck-fast fa-2xl"></i>
                 <span class="policy-title">GIAO HÀNG TOÀN QUỐC</span>
                 <span class="content-title">Giao hàng siêu tốc, nhận ship cod giao tân nơi thu tiền</span>
             </div>
             <div class="policy-item">
-                <img class="policy-img" src="~/image/door.svg" />
+                <i class="fa-solid fa-door-open fa-2xl"></i>
                 <span class="policy-title">MUA HÀNG (8H30 - 22H00, T2 - CN)</span>
                 <span class="content-title">Hotline Mua hàng 039.5680.199</span>
             </div>
              <div class="policy-item">
-                    <img class="policy-img" src="~/image/cart-shopping-solid.svg"/>
+                   <i class="fa-solid fa-cart-shopping fa-2xl"></i>
                     <span class="policy-title">Mua hàng tận nơi</span>
                     <span class="content-title">Địa Chỉ: Kim Giang, Hoàng Mai, Hà Nội</span>
                 </div>
@@ -61,7 +64,7 @@
                 <div class="p-title">
                     <span>Sản phẩm mới</span>
                 </div>
-                <div class="p-item">
+               @*  <div class="p-item">
                     <a href="#">Tất cả</a>
                     @foreach (var item in categories)
                     {
@@ -69,19 +72,19 @@
                     }
                     
                    
-                </div>
+                </div> *@
 
             </div>
             <div class="list-product">
-                @for(int i = 0; i<5 ; i++)
+                @for(int i = Model.Count() -1; i > Model.Count() - 6 ; i--)
                 {
                     <a href="" class="product">
                         <div class="product-img">
-                            <img  src="~/image/product.png" />
+                            <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model[i].dataimage))" />
                         </div>
                        
-                        <span class="product-name">Áo phông siêu đẹp Áo phông siêu đẹp Áo phông siêu đẹp </span>
-                        <span class="product-price">Giá bán: 160.000</span>
+                        <span class="product-name">@Model[i].producdName</span>
+                        <span class="product-price">Giá bán: @Model[i].producdPrice</span>
                         <span class="product-sold">Đã bán: 16 sản phẩm</span>
                        @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                     </a>
@@ -96,25 +99,25 @@
                 <div class="p-title">
                     <span>Sản phẩm bán chạy</span>
                 </div>
-                <div class="p-item">
+               @*  <div class="p-item">
                     <a href="#">Tất cả</a>
                     @foreach (var item in categories)
                     {
                         <a href="#">@item.namecategory</a>
                     }
-                </div>
+                </div> *@
 
             </div>
             <div class="list-product">
-                @for (int i = 0; i < 5; i++)
+                @for (int i = Model.Count() - 1; i > Model.Count() - 6; i--)
                 {
                     <a href="" class="product">
                         <div class="product-img">
-                            <img src="~/image/product.png" />
+                            <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model[i].dataimage))" />
                         </div>
 
-                        <span class="product-name">Áo phông siêu đẹp Áo phông siêu đẹp Áo phông siêu đẹp </span>
-                        <span class="product-price">Giá bán: 160.000đ</span>
+                        <span class="product-name">@Model[i].producdName</span>
+                        <span class="product-price">Giá bán: @Model[i].producdPrice</span>
                         <span class="product-sold">Đã bán: 16 sản phẩm</span>
                         @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                     </a>

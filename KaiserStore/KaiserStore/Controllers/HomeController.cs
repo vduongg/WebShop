@@ -22,12 +22,22 @@ namespace KaiserStore.Controllers
         {
             var category = await _context.category.Where(a => a.active == "true").ToListAsync();
             ViewData["category"] = category;
-            return View();
+            var product = _context.product.ToList();
+            return View(product);
         }
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("login", "accounts");
+        }
+        [Route("/Category/{id}")]
+        public async Task<IActionResult> Category(string id)
+        {
+            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            ViewData["category"] = category;
+            var nameCategory = _context.category.Find(id);
+            var product = _context.product.Where(a => a.productType == nameCategory.namecategory).ToList();
+            return View(product);
         }
 
 

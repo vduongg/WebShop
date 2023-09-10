@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "cV/GzgL7os7Ud2zBYDZHzLVxoBO8ata40H8406jFIL//tLi0Oel6T1ThagBWC+n7jf7F+ivVqDjUjj/sfKDX/g==",
+  "dgSpecHash": "rpI4URRvDBwU8XPBVfh5XrASO9/CJStKL3USamX+VfAKXvM04SKWQVAp1w+45u+rDVI3+Uvf6rPmtFycrVH21A==",
   "success": true,
   "projectFilePath": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\KaiserStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vu Duong\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Vu Duong\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Vu Duong\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\Vu Duong\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Vu Duong\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Vu Duong\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

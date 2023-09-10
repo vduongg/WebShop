@@ -290,3 +290,4 @@ E:\Asp.net Core  MVC 6\Github\WebShop\KaiserStore\KaiserStore\bin\Debug\net6.0\r
 E:\Asp.net Core  MVC 6\Github\WebShop\KaiserStore\KaiserStore\bin\Debug\net6.0\runtimes\win-arm64\native\e_sqlite3.dll
 E:\Asp.net Core  MVC 6\Github\WebShop\KaiserStore\KaiserStore\bin\Debug\net6.0\runtimes\win-x64\native\e_sqlite3.dll
 E:\Asp.net Core  MVC 6\Github\WebShop\KaiserStore\KaiserStore\bin\Debug\net6.0\runtimes\win-x86\native\e_sqlite3.dll
+E:\Asp.net Core  MVC 6\Github\WebShop\KaiserStore\KaiserStore\bin\Debug\net6.0\libman.json
