@@ -22,35 +22,67 @@ namespace KaiserStore.Controllers
             var category = await _context.category.Where(a => a.active == "true").ToListAsync();
             ViewData["category"] = category;
             ClaimsPrincipal claimUser = HttpContext.User;
-            if (claimUser.Identity.IsAuthenticated)
+            if (HttpContext.Session.GetString("UserSession") != null)
             {
                 return RedirectToAction("Home", "Home");
+
             }
-            else
-            {
-                ViewData["Role"] = "guest";
-            }
+            //else
+            //{
+            //    ViewData["Role"] = "guest";
+            //}
             return View();
 
         }
-        
+        [HttpPost]
+        public async Task<IActionResult> Register(AccountsVM accounts )
+        {
+            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            ViewData["category"] = category;
+            var loginUser = _context.accounts.Where(a => a.username == accounts.username).FirstOrDefault();
+            var loginemail = _context.accounts.Where(a => a.email == accounts.email).FirstOrDefault();
+            if (loginUser != null)
+            {
+                if (loginUser.username == accounts.username)
+                {
+                    ViewData["UserError"] = "Tài khoản  đã được sử dụng!";
+                }
+            }
+            if( loginemail != null)
+            {
+                if (loginemail.email == accounts.email)
+                {
+                    ViewData["MailError"] = "Email đã được sử dụng!";
+                }
+            }
+            if(loginUser == null && loginemail == null && ModelState.IsValid)
+            {
+               await _context.accounts.AddAsync(accounts);
+               await _context.SaveChangesAsync();
+               return RedirectToAction("login", "accounts");
+
+            }
+          
+            return View();
+        }
         public async Task<IActionResult> Login()
         {
             var category = await _context.category.Where(a => a.active == "true").ToListAsync();
             ViewData["category"] = category;
-            ClaimsPrincipal claimUser = HttpContext.User;
-            if(claimUser.Identity.IsAuthenticated) {
-                return RedirectToAction("Home", "Home");
-            }
-            else
+            if (HttpContext.Session.GetString("UserSession") != null)
             {
-                ViewData["Role"] = "guest";
+                return RedirectToAction("Home", "Home");
+                
             }
+
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel accounts)
         {
+
+            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            ViewData["category"] = category;
             var loginUser = _context.accounts.Where(a => a.username == accounts.user && a.password == accounts.pass).FirstOrDefault();
             var loginemail = _context.accounts.Where(a => a.email == accounts.user && a.password == accounts.pass).FirstOrDefault();
             if (loginUser != null || loginemail != null)
@@ -64,26 +96,12 @@ namespace KaiserStore.Controllers
                     name = loginemail.name;
                 }
 
-                List<Claim> claims = new List<Claim>() {
-                    new Claim(ClaimTypes.NameIdentifier, accounts.user),
-                    new Claim(ClaimTypes.Name,name),
-
-                };
-                ClaimsIdentity claimsidentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
-
-                AuthenticationProperties properties = new AuthenticationProperties()
-                {
-                    AllowRefresh = true,
-                 
-
-                };
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsidentity),properties);
-               
-                return RedirectToAction("Home","Home");
+                HttpContext.Session.SetString("UserSession", name);
+                return RedirectToAction("Home", "Home");
+              
             }
-         
 
+            ViewData["Validate"] = "Tài khoản hoặc mật khẩu không hợp lệ!";
             return View();
         }
        

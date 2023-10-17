@@ -18,6 +18,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
         options.Cookie.Name = "MyCookie";
+        options.LoginPath = "/Admin/Login";
        
     });
 builder.Services.AddSession(option =>

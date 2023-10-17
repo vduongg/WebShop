@@ -76,7 +76,6 @@
     color: black;
 
 }
-.loginForm span {
-    font-size: 14px;
-    padding-bottom: 30px;
+.error {
+    color: red;
 }

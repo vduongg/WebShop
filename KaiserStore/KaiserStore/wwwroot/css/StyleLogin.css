@@ -74,13 +74,13 @@
     font-size: 14px;
     font-weight: 600;
     padding-bottom: 40px;
+    text-decoration:underline;
 }
 
 .loginForm a:hover {
     color: black;
 }
 
-.loginForm span {
-    font-size: 14px;
-    padding-bottom: 30px;
+.error{
+    color: red;
 }

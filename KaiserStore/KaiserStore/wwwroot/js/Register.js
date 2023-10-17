@@ -1,8 +1,8 @@
 ﻿function userType(type, id) {
 
 
-    var user = document.getElementById('user').value;
-    var pass = document.getElementById('pass').value;
+    //var user = document.getElementById('user').value;
+    //var pass = document.getElementById('pass').value;
 
     if (type !== "") {
         document.getElementById(id).style.paddingTop = '0';

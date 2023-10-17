@@ -23,15 +23,8 @@
                 <div class="search">
                     <input class="search-input" placeholder="Tìm kiếm sản phẩm" />
                 </div>
-                <div class="cart">
-                    <a href="#" class="card-item">
-                        <img src="~/image/cart-shopping-solid.svg" width="24px" height="24px" />
-                        <span>Giỏ hàng</span>
-                        <span>/</span>
-                        <span>0đ</span>
-                    </a>
-                </div>
-                @if (!(User.Identity.IsAuthenticated))
+               
+                @if (ViewData["Data"] == null)
                 {
                     <div class="accounts">
                         <div class="accounts-title">
@@ -48,7 +41,15 @@
                 }
                 else
                 {
-                    <span style="font-size: 14px; padding-right: 10px">Xin chào @User.Identity.Name,</span>
+                    <div class="cart">
+                        <a href="#" class="card-item">
+                            <img src="~/image/cart-shopping-solid.svg" width="24px" height="24px" />
+                            <span>Giỏ hàng</span>
+                            <span>/</span>
+                            <span>0đ</span>
+                        </a>
+                    </div>
+                    <span style="font-size: 14px; padding-right: 10px">Xin chào @ViewData["Data"]</span>
                     <a  style="font-size: 16px; font-weight: 600; border-bottom: 1px solid; color: black;" class="LogOut" asp-action="LogOut"> Đăng xuất</a>
                 }
 
@@ -58,7 +59,7 @@
             <div class="navbar">
                 @foreach (var item in categories)
                 {
-                    <a class="nav" asp-route-id="@item.id" asp-action="Category">@item.namecategory</a>
+                    <a class="nav" asp-route-id="@item.id" asp-controller="Home" asp-action="Category">@item.namecategory</a>
                     
                 }
               

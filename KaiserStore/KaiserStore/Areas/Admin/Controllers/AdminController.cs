@@ -1,7 +1,11 @@
 ﻿using KaiserStore.Data;
 using KaiserStore.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace KaiserStore.Areas.Admin.Controllers
 {
@@ -15,35 +19,34 @@ namespace KaiserStore.Areas.Admin.Controllers
 
         [Area("Admin")]
         [Route("Admin/Home")]
+        [Authorize]
         public IActionResult AdminHome()
         {
-            if(HttpContext.Session.GetString("AdminSession") == null)
+            ClaimsPrincipal claimUser = HttpContext.User;
+            if (claimUser.Identity.IsAuthenticated)
             {
-                return RedirectToAction("AdminLogin");
+                return View();
             }
-            else
-            {
-
-
-            }
-            return View();
+            
+            return RedirectToAction("AdminLogin");
         }
         [Area("Admin")]
         [Route("/Admin/Login")]
         public IActionResult AdminLogin()
         {
-            if (HttpContext.Session.GetString("AdminSession") != null)
+            ClaimsPrincipal claimUser = HttpContext.User;
+            if (claimUser.Identity.IsAuthenticated)
             {
                 return RedirectToAction("AdminHome");
             }
-         
+        
             return View();
-  
+            
         }
         [Area("Admin")]
         [Route("/Admin/Login")]
         [HttpPost]
-        public IActionResult AdminLogin(LoginModel accounts)
+        public async Task<IActionResult> AdminLoginAsync(LoginModel accounts)
         {
             var loginUser = _context.accounts.Where(a => a.username == accounts.user && a.password == accounts.pass).FirstOrDefault();
             var loginemail = _context.accounts.Where(a => a.email == accounts.user && a.password == accounts.pass).FirstOrDefault();
@@ -58,9 +61,23 @@ namespace KaiserStore.Areas.Admin.Controllers
                 {
                     name = loginemail.name;
                 }
+                List<Claim> claims = new List<Claim>() {
+                    new Claim(ClaimTypes.NameIdentifier, accounts.user),
+                    new Claim(ClaimTypes.Name,name),
 
-                HttpContext.Session.SetString("AdminSession", name);
+                };
+                ClaimsIdentity claimsidentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                AuthenticationProperties properties = new AuthenticationProperties()
+                {
+                    AllowRefresh = true,
+
+
+                };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsidentity), properties);
                 return RedirectToAction("AdminHome");
+
             }
             else
             {
@@ -69,11 +86,11 @@ namespace KaiserStore.Areas.Admin.Controllers
               return View();
         }
         [Area("Admin")]
-        public IActionResult AdminLogOut()
+        public async Task<IActionResult> AdminLogOutAsync()
         {
-          HttpContext.Session.Remove("AdminSession");
-          return RedirectToAction("AdminLogin", "Admin");
-       
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("AdminLogin", "Admin");
+
         }
 
 

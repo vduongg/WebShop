@@ -1,5 +1,8 @@
 ﻿using KaiserStore.Data;
 using KaiserStore.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,24 +17,18 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
         [Area("Admin")]
         [Route("/Admin/Category")]
+        [Authorize]
         public async Task<IActionResult> Category()
         {
-            if (HttpContext.Session.GetString("AdminSession") == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
             var category =  await _context.category.Where(a => a.active == "true").ToListAsync();
             return View(category);
 
         }
         [Area("Admin")]
         [Route("/Admin/Category/Create")]
+        [Authorize]
         public IActionResult Create()
         {
-            if (HttpContext.Session.GetString("AdminSession") == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
             return View();
         }
 
@@ -39,13 +36,10 @@ namespace KaiserStore.Areas.Admin.Controllers
         [HttpPost]
         [Area("Admin")]
         [Route("/Admin/Category/Create")]
-
+        [Authorize]
         public async Task<IActionResult> Create(CategoryVM category)
         {
-            if (HttpContext.Session.GetString("AdminSession") == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
+ 
             var size = await _context.category.ToListAsync();
             var categoryVM =  _context.category.Where(m => m.id == category.id).FirstOrDefault();
             if (categoryVM == null)
@@ -75,12 +69,10 @@ namespace KaiserStore.Areas.Admin.Controllers
 
         [Area("Admin")]
         [Route("/Admin/Category/Edit")]
+        [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
-            if (HttpContext.Session.GetString("AdminSession") == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
+        
             if (id != null || _context.category != null)
             {
                 var categoryVM = await _context.category.FindAsync(id);
@@ -91,13 +83,10 @@ namespace KaiserStore.Areas.Admin.Controllers
         [HttpPost]
         [Area("Admin")]
         [Route("/Admin/Category/Edit")]
+        [Authorize]
         public async Task<IActionResult> Edit(string id, CategoryVM categoryVM)
         {
-            if (HttpContext.Session.GetString("AdminSession") == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
-
+        
             if (ModelState.IsValid)
             {
                 {
@@ -111,12 +100,10 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
         [Area("Admin")]
         [Route("/Admin/Category/Delete")]
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
-            if (HttpContext.Session.GetString("AdminSession") == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
+      
             if (id == null || _context.category == null)
             {
                 return NotFound();
@@ -134,12 +121,13 @@ namespace KaiserStore.Areas.Admin.Controllers
         [HttpPost, ActionName("Delete")]
         [Area("Admin")]
         [Route("/Admin/Category/Delete")]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(string id, CategoryVM categoryVM)
         {
-            if (HttpContext.Session.GetString("AdminSession") == null)
-            {
-                return RedirectToAction("AdminLogin","Admin");
-            }
+            //if (HttpContext.Session.GetString("AdminSession") == null)
+            //{
+            //    return RedirectToAction("AdminLogin","Admin");
+            //}
             if (ModelState.IsValid)
             {
                 {
@@ -152,10 +140,11 @@ namespace KaiserStore.Areas.Admin.Controllers
             return View();
         }
 
+        
         [Area("Admin")]
-        public IActionResult AdminLogOut()
+        public async Task<IActionResult> AdminLogOutAsync()
         {
-            HttpContext.Session.Remove("AdminSession");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("AdminLogin", "Admin");
 
         }

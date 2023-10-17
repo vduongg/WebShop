@@ -1,4 +1,5 @@
-﻿@{
+﻿@model KaiserStore.Models.AccountsVM;
+@{
     ViewData["Title"] = "Kaiser Store • Đăng ký";
     Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
 }
@@ -10,34 +11,44 @@
     <link rel="stylesheet" href="~/css/StyleRegister.css" />
 </head>
 <body>
-    <div class="loginForm">
+    <form class="loginForm" method="post" >
         <div class="loginTitle">ĐĂNG KÝ TÀI KHOẢN</div>
         <div class="user">
             <span id="user">Tên người dùng</span>
-            <input type="text" oninput="userType(this.value,'user')" value="" />
+            <input type="text" oninput="userType(this.value,'user')" value="" asp-for="username" />
         </div>
+        <span asp-validation-for="username" class="error"></span>
         <div class="email">
             <span id="email">Email</span>
-            <input type="text" oninput="userType(this.value,'email')" value="" />
+            <input type="text" oninput="userType(this.value,'email')" value="" asp-for="email"/>
         </div>
+        <span asp-validation-for="email" class="error"></span>
         <div class="name">
             <span id="name">Họ và tên</span>
-            <input type="text" oninput="userType(this.value,'name')" value="" />
+            <input type="text" oninput="userType(this.value,'name')" value="" asp-for="name" />
         </div>
+        <span asp-validation-for="name" class="error"></span>
         <div class="pass">
             <span id="pass">Mật khẩu</span>
-            <input type="password" oninput="userType(this.value,'pass')" value="" />
-        </div> <div class="passrepeat">
+            <input type="password" oninput="userType(this.value,'pass')" value="" asp-for="password" />
+        </div>
+        <input type="text" hidden value="user" asp-for="role" />
+        <span asp-validation-for="password" class="error"></span>
+        <div class="passrepeat">
             <span id="passrepeat">Nhập lại mật khẩu</span>
-            <input type="password" oninput="userType(this.value,'passrepeat')" value="" />
+            <input type="password" oninput="userType(this.value,'passrepeat')" value="" asp-for="repeatpass" />
         </div>
+        <span asp-validation-for="repeatpass" class="error"></span>
+
         <div class="buttonOK">
-            <button>Đăng nhập</button>
+            <button>Đăng ký</button>
         </div>
+         <span class="error">@ViewData["UserError"]</span>
+        <span class="error">@ViewData["MailError"]</span>
         <span>BẠN ĐÃ CÓ TÀI KHOẢN. ĐĂNG NHẬP <a href="/accounts/login">TẠI ĐÂY.</a> </span>
            
    
-    </div>
+    </form>
 
     <script src="~/js/Register.js" ></script>
 </body>

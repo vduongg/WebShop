@@ -13,18 +13,26 @@
 </head>
 <body>
     <form class="loginForm" method="post">
+    
         <div class="loginTitle">ĐĂNG NHẬP TÀI KHOẢN</div>
         <div class="user">
             <span id="user">Tên người dùng hoặc email</span>
             <input type="text" oninput="userType(this.value,'user')" value="" asp-for="user" />
         </div>
+            <span asp-validation-for="user" class="error"> </span>
+       
         <div class="pass">
             <span id="pass">Mật khẩu</span>
             <input type="password" oninput="userType(this.value,'pass')" value="" asp-for="pass" />
         </div>
+         <span asp-validation-for="pass" class="error"> </span>
         <div class="buttonOK">
             <button type="submit">Đăng nhập</button>
         </div>
+        @if(ViewData["Validate"] != "" )
+        {
+            <span class="error">@ViewData["Validate"]</span>
+        }
         <a href="#">Quên mật khẩu?</a>
         <span>BẠN CHƯA CÓ TÀI KHOẢN. ĐĂNG KÝ <a href="/accounts/register">TẠI ĐÂY.</a> </span>
 

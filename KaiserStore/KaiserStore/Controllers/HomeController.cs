@@ -23,16 +23,28 @@ namespace KaiserStore.Controllers
             var category = await _context.category.Where(a => a.active == "true").ToListAsync();
             ViewData["category"] = category;
             var product = _context.product.ToList();
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+
+            }
             return View(product);
         }
         public async Task<IActionResult> LogOut()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove("UserSession");
             return RedirectToAction("login", "accounts");
+          
+            
         }
         [Route("/Category/{id}")]
         public async Task<IActionResult> Category(string id)
         {
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+
+            }
             var category = await _context.category.Where(a => a.active == "true").ToListAsync();
             ViewData["category"] = category;
             var nameCategory = _context.category.Find(id);

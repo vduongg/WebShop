@@ -1,5 +1,8 @@
 ﻿using KaiserStore.Data;
 using KaiserStore.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -15,6 +18,7 @@ namespace KaiserStore.Areas.Admin.Controllers
 
         [Area("Admin")]
         [Route("/Admin/Product")]
+        [Authorize]
         public IActionResult Product()
         {
             var product = _context.product.ToList();
@@ -23,6 +27,7 @@ namespace KaiserStore.Areas.Admin.Controllers
 
         [Area("Admin")]
         [Route("/Admin/Product/Add")]
+        [Authorize]
         public IActionResult Add()
         {
             var category = _context.category.ToList();
@@ -33,6 +38,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [HttpPost]
         [Area("Admin")]
         [Route("/Admin/Product/Add")]
+        [Authorize]
         public IActionResult Add(ProductsVM product)
         {
             var category = _context.category.ToList();
@@ -56,6 +62,7 @@ namespace KaiserStore.Areas.Admin.Controllers
 
         [Area("Admin")]
         [Route("/Admin/Product/Edit")]
+        [Authorize]
         public  IActionResult Edit(int id)
         {
             var category = _context.category.ToList();
@@ -67,6 +74,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [HttpPost]
         [Area("Admin")]
         [Route("/Admin/Product/Edit")]
+        [Authorize]
         public async Task<IActionResult> Edit(ProductsVM productVM)
         {
           
@@ -95,9 +103,19 @@ namespace KaiserStore.Areas.Admin.Controllers
 
         [Area("Admin")]
         [Route("/Admin/Product/Delete")]
+        [Authorize]
         public IActionResult Delete()
         {
             return View();
         }
+
+        [Area("Admin")]
+        public async Task<IActionResult> AdminLogOutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("AdminLogin", "Admin");
+
+        }
+
     }
 }
