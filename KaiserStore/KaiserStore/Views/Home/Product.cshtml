@@ -1,0 +1,58 @@
+﻿@model KaiserStore.Models.ProductsVM;
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleProduct.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="wrapper-product">
+        <div class="product-img">
+            <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model.dataimage))"  />
+        </div>
+        <div class="product-info">
+            <span class="product-name">@Model.producdName </span>
+            <span class="product-price">Giá: @Model.producdPrice</span>
+            <span class="status">Còn hàng</span>
+            <span class="product-sold">Đã bán: 16 sản phẩm</span>
+            @if (ViewData["Data"] != null)
+            {
+                <button>Thêm vào giỏ hàng</button>
+            }
+           
+        </div>
+        @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
+
+    </div>
+    <div class="product-details">
+        <h3>Thông tin sản phẩm</h3>
+        <div class="details">
+            <span>
+                Chất liệu vải là tiêu chí đầu tiên khi các bậc làm cha mẹ chọn lựa quần áo cho bé .
+                Váy thô cho bé gái được làm từ chất liệu cotton mềm, giặt nhiều không sờn, không bạc màu là sự lựa chọn tối ưu cho bé gái.
+            </span>
+           
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

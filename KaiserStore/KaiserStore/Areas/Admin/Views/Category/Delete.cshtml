@@ -12,7 +12,7 @@
         <h3>Bạn có chắc chắn muốn xóa danh mục không?</h3>
         <input type="hidden" asp-for="id" />
         <input type="hidden" asp-for="namecategory" />
-        <input type="hidden" value="false" asp-for="active" />
+        <input type="hidden" value="disable" asp-for="status" />
         <button type="submit" style="padding: 10px; margin: 10px;">Xóa danh mục</button>
         <span style="color: red;">@ViewData["Status"]</span>
     </form>

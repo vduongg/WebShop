@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/bo6FJCr3fd4kQbukURHWHvxDWiMN16H6abbC+oh0pw=",
+  "Hash": "6EQzW+6OuDDOtCSawhtjs+eaSAGMGLOwMICnkcRyRnI=",
   "Source": "KaiserStore",
   "BasePath": "_content/KaiserStore",
   "Mode": "Default",
@@ -102,6 +102,23 @@
       "OriginalItemSpec": "wwwroot\\css\\StyleAdminHome.css"
     },
     {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminInventory.css",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "css/StyleAdminInventory.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleAdminInventory.css"
+    },
+    {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminLogin.css",
       "SourceId": "KaiserStore",
       "SourceType": "Discovered",
@@ -151,6 +168,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\StyleLogin.css"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleOrder.css",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "css/StyleOrder.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleOrder.css"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleProduct.css",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "css/StyleProduct.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleProduct.css"
     },
     {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleRegister.css",

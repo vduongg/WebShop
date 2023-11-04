@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\StyleAdminHome.css"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminInventory.css",
+      "PackagePath": "staticwebassets\\css\\StyleAdminInventory.css"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminLogin.css",
       "PackagePath": "staticwebassets\\css\\StyleAdminLogin.css"
     },
@@ -23,6 +27,14 @@
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleLogin.css",
       "PackagePath": "staticwebassets\\css\\StyleLogin.css"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleOrder.css",
+      "PackagePath": "staticwebassets\\css\\StyleOrder.css"
+    },
+    {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleProduct.css",
+      "PackagePath": "staticwebassets\\css\\StyleProduct.css"
     },
     {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleRegister.css",

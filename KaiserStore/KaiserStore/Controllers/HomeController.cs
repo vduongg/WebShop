@@ -20,9 +20,9 @@ namespace KaiserStore.Controllers
         [Route("/")]
         public async Task<IActionResult> Home()
         {
-            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            var product = _context.product.ToList();
+            var product = _context.products.ToList();
             if (HttpContext.Session.GetString("UserSession") != null)
             {
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
@@ -45,18 +45,44 @@ namespace KaiserStore.Controllers
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
 
             }
-            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            var nameCategory = _context.category.Find(id);
-            var product = _context.product.Where(a => a.productType == nameCategory.namecategory).ToList();
+            var nameCategory = _context.categorys.Find(id);
+            var product = _context.products.Where(a => a.categoryId == nameCategory.id).ToList();
             return View(product);
+        }
+        [Route("/Product/{id}")]
+        public async Task<IActionResult> Product(string id)
+        {
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+
+            }
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            ViewData["category"] = category;
+            var nameProduct = _context.products.Find(int.Parse(id));
+            
+            return View(nameProduct);
+        }
+        [Route("/Order")]
+        public async Task<IActionResult> Order()
+        {
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            ViewData["category"] = category;
+            return View();
+
+        }
+        [Route("/Payments")]
+        public async Task<IActionResult> Payments()
+        {
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            ViewData["category"] = category;
+            return View();
         }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

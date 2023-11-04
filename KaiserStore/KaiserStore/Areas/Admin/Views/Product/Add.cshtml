@@ -22,13 +22,14 @@
             <h3 style="margin-bottom: 10px"> THÊM SẢN PHẨM</h3>
             <input style="margin-bottom: 10px" placeholder="Tên sản phẩm" asp-for="producdName" />
             <input style="margin-bottom: 10px" placeholder="Giá sản phẩm" asp-for="producdPrice" />
-            <select style="margin-bottom: 10px" asp-for="productType">
+            <select style="margin-bottom: 10px" asp-for="categoryId">
                 @foreach (var item in categories)
                 {
-                    <option>@item.namecategory</option>
+                    <option label="@item.namecategory">@item.id</option>
 
                 }
             </select>
+            <input hidden value="active" asp-for="status" />
             <input style="margin-bottom: 10px" type="file" asp-for="file" />
             <button style="margin-bottom: 10px" type="submit">Upload</button>
            

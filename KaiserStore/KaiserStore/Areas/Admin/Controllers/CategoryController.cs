@@ -20,7 +20,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> Category()
         {
-            var category =  await _context.category.Where(a => a.active == "true").ToListAsync();
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             return View(category);
 
         }
@@ -40,8 +40,8 @@ namespace KaiserStore.Areas.Admin.Controllers
         public async Task<IActionResult> Create(CategoryVM category)
         {
  
-            var size = await _context.category.ToListAsync();
-            var categoryVM =  _context.category.Where(m => m.id == category.id).FirstOrDefault();
+            var size = await _context.categorys.ToListAsync();
+            var categoryVM =  _context.categorys.Where(m => m.id == category.id).FirstOrDefault();
             if (categoryVM == null)
             {
                 if (size.Count() <= 6) {
@@ -73,9 +73,9 @@ namespace KaiserStore.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(string id)
         {
         
-            if (id != null || _context.category != null)
+            if (id != null || _context.categorys != null)
             {
-                var categoryVM = await _context.category.FindAsync(id);
+                var categoryVM = await _context.categorys.FindAsync(id);
                 return View(categoryVM);
             }
             return View();
@@ -104,12 +104,12 @@ namespace KaiserStore.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(string id)
         {
       
-            if (id == null || _context.category == null)
+            if (id == null || _context.categorys == null)
             {
                 return NotFound();
             }
 
-            var categoryVM = await _context.category
+            var categoryVM = await _context.categorys
                 .FirstOrDefaultAsync(m => m.id == id);
             if (categoryVM == null)
             {
@@ -152,7 +152,7 @@ namespace KaiserStore.Areas.Admin.Controllers
 
         private bool CategoryVMExists(string id)
         {
-            return (_context.category?.Any(e => e.id == id)).GetValueOrDefault();
+            return (_context.categorys?.Any(e => e.id == id)).GetValueOrDefault();
         }
 
 

@@ -1,0 +1,19 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model KaiserStore.Models.SizeItem
+
+@{
+    ViewData["Title"] = "AddSize";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<div style="width: 100%; height: 90vh; display: flex; justify-content: center; align-items: center;">
+
+    <form style="display: flex; flex-direction: column; align-items: center;" asp-action="AddSize" method="post">
+        <h3>Thêm Size</h3>
+        <input  asp-for="ProductId" hidden value="@ViewData["id"]"/>
+        <input style="padding: 10px; margin: 10px;" placeholder="Name" asp-for="Name" />
+        <button type="submit" style="padding: 10px; margin: 10px;">Thêm Size</button>
+        <span style="color: red;">@ViewData["Status"]</span>
+    </form>
+</div>
+

@@ -62,15 +62,16 @@
             <div>
 
                 <span>Loại sản phẩm</span>
-                <select asp-for="productType">
-                    <option>@Model.productType</option>
+                <select asp-for="categoryId">
+                    <option>@Model.categoryId</option>
                     @foreach (var item in categories)
                     {
-                        <option>@item.namecategory</option>
+                        <option label="@item.namecategory">@item.id</option>
                        
                     }
                 </select>
             </div>
+            <input asp-for="status" value="active" hidden />
             <div style="display: flex; flex-direction: column;">
                 <span>Ảnh sản phẩm</span>
                 <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model.dataimage))" width="250" height="250" />

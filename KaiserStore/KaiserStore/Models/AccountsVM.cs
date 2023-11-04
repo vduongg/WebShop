@@ -20,8 +20,11 @@ namespace KaiserStore.Models
         public string password { get; set; }
         public string role{ get; set; }
         [NotMapped]
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu nhập lại còn trống!")]
         [Compare("password", ErrorMessage ="Không giống mật khẩu đã nhập!")]
         public string repeatpass { get; set; }
+
+        public  List<Payment>? payments { get; set; } 
+        public  List<Cart>? carts { get; set; }
     }
 }

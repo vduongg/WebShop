@@ -21,7 +21,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Product()
         {
-            var product = _context.product.ToList();
+            var product = _context.products.ToList();
             return View(product);
         }
 
@@ -30,7 +30,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Add()
         {
-            var category = _context.category.ToList();
+            var category = _context.categorys.ToList();
             ViewData["category"] = category;
             return View();
         }
@@ -41,7 +41,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Add(ProductsVM product)
         {
-            var category = _context.category.ToList();
+            var category = _context.categorys.ToList();
             ViewData["category"] = category;
             var file = product.file;
             if (file != null)
@@ -52,9 +52,15 @@ namespace KaiserStore.Areas.Admin.Controllers
                     file.CopyTo(target);
                     p.dataimage = target.ToArray();
                 }
-                  _context.product.Add(p);
-                 _context.SaveChanges();
-                return RedirectToAction("Product");
+                if(ModelState.IsValid)
+                {
+                    _context.products.Add(p);
+                    _context.SaveChanges();
+                    return RedirectToAction("Product");
+                }
+                    
+          
+                  
 
             }
             return View();
@@ -65,9 +71,9 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public  IActionResult Edit(int id)
         {
-            var category = _context.category.ToList();
+            var category = _context.categorys.ToList();
             ViewData["category"] = category;
-            var productsVM =  _context.product.Find(id);
+            var productsVM =  _context.products.Find(id);
             return View(productsVM);
             
         }
@@ -87,14 +93,14 @@ namespace KaiserStore.Areas.Admin.Controllers
                     file.CopyTo(target);
                     p.dataimage = target.ToArray();
                 }
-                _context.product.Update(p);
+                _context.products.Update(p);
                 _context.SaveChanges();
                 return RedirectToAction("Product");
 
             }
             else
             {
-                _context.product.Update(productVM);
+                _context.products.Update(productVM);
                 _context.SaveChanges();
                 return RedirectToAction("Product");
             }   

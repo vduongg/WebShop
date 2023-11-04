@@ -29,9 +29,9 @@
                 @foreach (var item in Model)
                 {
                     <div class="wrapper-product">
-                        <a href="" class="product">
+                        <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@item.Id" >
                             <div class="product-img">
-                                <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))" width="100%"/>
+                                <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))"/>
                             </div>
 
                             <span class="product-name">@item.producdName </span>

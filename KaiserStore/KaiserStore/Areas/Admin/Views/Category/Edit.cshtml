@@ -12,7 +12,7 @@
         <h3>Sửa danh mục</h3>
         <input type="hidden" asp-for="id" />
         <input style="padding: 10px; margin: 10px;" placeholder="Tên danh mục" asp-for="namecategory" />
-        <input type="hidden" value="true" asp-for="active" />
+        <input type="hidden" value="active" asp-for="status" />
         <button type="submit" style="padding: 10px; margin: 10px;">Sửa danh mục</button>
         <span style="color: red;">@ViewData["Status"]</span>
     </form>

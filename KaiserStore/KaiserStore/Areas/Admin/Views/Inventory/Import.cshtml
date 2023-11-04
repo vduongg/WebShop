@@ -1,0 +1,44 @@
+﻿@using KaiserStore.Models;
+@{
+    List<SizeItem> ListSize = ViewData["ListSize"] != null ? (List<SizeItem>)ViewData["ListSize"] : null;
+    ProductsVM product = ViewData["product"] != null ? (ProductsVM)ViewData["product"] : null;
+}
+@model KaiserStore.Models.ImportDetails;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Import";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>  
+<head>
+
+</head>
+<body>
+    <div style="width: 100%; height: 100vh; display: flex; align-items:center; justify-content: center;">
+        <form style="display: flex; flex-direction: column; align-items: center;" class="productForm" enctype="multipart/form-data" method="post">
+            <h3 style="margin-bottom: 10px"> Nhập kho</h3>
+            <label>@product.producdName</label>
+            <input value="@product.Id" asp-for="ProductId" />
+            <select style="margin-bottom: 10px" asp-for="Size">
+                @foreach (var item in ListSize)
+                {
+                    <option>@item.Name</option>
+
+                }
+            </select>
+            <input placeholder="Số lượng" asp-for="quantity" />
+            <button type="submit">Nhập hàng</button>
+        </form>
+    </div>
+
+
+
+
+
+</body>
+</html>
+

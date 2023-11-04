@@ -19,7 +19,7 @@ namespace KaiserStore.Controllers
        
         public async Task<IActionResult> Register()
         {
-            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
             ClaimsPrincipal claimUser = HttpContext.User;
             if (HttpContext.Session.GetString("UserSession") != null)
@@ -37,7 +37,7 @@ namespace KaiserStore.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(AccountsVM accounts )
         {
-            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
             var loginUser = _context.accounts.Where(a => a.username == accounts.username).FirstOrDefault();
             var loginemail = _context.accounts.Where(a => a.email == accounts.email).FirstOrDefault();
@@ -67,7 +67,7 @@ namespace KaiserStore.Controllers
         }
         public async Task<IActionResult> Login()
         {
-            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
             if (HttpContext.Session.GetString("UserSession") != null)
             {
@@ -81,7 +81,7 @@ namespace KaiserStore.Controllers
         public async Task<IActionResult> Login(LoginModel accounts)
         {
 
-            var category = await _context.category.Where(a => a.active == "true").ToListAsync();
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
             var loginUser = _context.accounts.Where(a => a.username == accounts.user && a.password == accounts.pass).FirstOrDefault();
             var loginemail = _context.accounts.Where(a => a.email == accounts.user && a.password == accounts.pass).FirstOrDefault();

@@ -90,13 +90,28 @@
                         <span id="title">Đơn hàng</span>
                     </a>
                 </div>
-                <div class="side__link">
-                    <a href="#">
+                @if (ViewData["page"] == "inventory")
+                {
 
-                        <img src="~/image/khohang.svg" />
-                        <span id="title">Kho hàng</span>
-                    </a>
-                </div>
+                    <div class="side__link active">
+                        <a href="" id="menu-link">
+
+                            <img src="~/image/khohang.svg" />
+                            <span id="title">Kho hàng</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="side__link">
+                        <a href="~/admin/inventory" id="menu-link">
+
+                            <img src="~/image/khohang.svg" />
+                            <span id="title">Kho hàng</span>
+                        </a>
+                    </div>
+                }
+            
                 <div class="side__link">
                     <a href="#">
 
