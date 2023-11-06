@@ -23,9 +23,7 @@
                 Danh mục sản phẩm
             </h3>
             <div class="right">
-                <div class="search-input">
-                    <input type="text" placeholder="Tìm kiếm..." />
-                </div>
+                
                 <form class="add-category" asp-action="Create" >
                     <button type="submit"> Thêm danh mục</button>
                 </form>
@@ -49,7 +47,7 @@
                     
                     @for(int i = 0; i< Model.Count(); i++)
                     {
-                        <form asp-action="Category" method="post">
+
                         <tr>
                             
                             <td>@(i+1)</td>
@@ -64,8 +62,6 @@
                             </td>
                         </tr>
 
-
-                        </form>
                        
                     }
                     

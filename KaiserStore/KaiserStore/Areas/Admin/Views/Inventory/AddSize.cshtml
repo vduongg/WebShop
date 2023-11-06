@@ -2,6 +2,7 @@
 @model KaiserStore.Models.SizeItem
 
 @{
+    ViewData["page"] = "inventory";
     ViewData["Title"] = "AddSize";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }
@@ -10,8 +11,10 @@
 
     <form style="display: flex; flex-direction: column; align-items: center;" asp-action="AddSize" method="post">
         <h3>Thêm Size</h3>
+        <input asp-for="Id" hidden value="0" />
         <input  asp-for="ProductId" hidden value="@ViewData["id"]"/>
         <input style="padding: 10px; margin: 10px;" placeholder="Name" asp-for="Name" />
+        <input asp-for="Quantity" hidden value="0" />
         <button type="submit" style="padding: 10px; margin: 10px;">Thêm Size</button>
         <span style="color: red;">@ViewData["Status"]</span>
     </form>

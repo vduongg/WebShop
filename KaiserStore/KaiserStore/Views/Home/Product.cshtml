@@ -1,4 +1,9 @@
-﻿@model KaiserStore.Models.ProductsVM;
+﻿@{
+    ProductsVM product = ViewData["productItem"] != null ? (ProductsVM)ViewData["productItem"] : null;
+    List<SizeItem> ListSize = ViewData["ListSize"] != null ? (List<SizeItem>)ViewData["ListSize"] : null;
+
+}
+@model KaiserStore.Models.Cart;
 @{
     ViewData["Title"] = "Product";
     Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
@@ -16,19 +21,40 @@
 
     <div class="wrapper-product">
         <div class="product-img">
-            <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model.dataimage))"  />
+            <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(product.dataimage))"  />
         </div>
-        <div class="product-info">
-            <span class="product-name">@Model.producdName </span>
-            <span class="product-price">Giá: @Model.producdPrice</span>
-            <span class="status">Còn hàng</span>
-            <span class="product-sold">Đã bán: 16 sản phẩm</span>
-            @if (ViewData["Data"] != null)
+     
+        <form method="post" asp-route-id="@product.Id" class="product-info">
+            <span class="product-name">@product.producdName </span>
+            <input hidden value="@ViewData["ID"]" asp-for="UserId"/>
+            <input hidden value="@product.Id" asp-for="ProductId"/>
+            <span class="product-price">Giá: @product.producdPrice</span>
+            @if(ListSize.Count() > 0)
             {
-                <button>Thêm vào giỏ hàng</button>
+                <select asp-for="Size">
+                    @foreach (var item in ListSize)
+                    {
+
+                        <option>@item.Name</option>
+
+                    }
+                </select>
+                <input placeholder="Số lượng" min="1" asp-for="quantity" />
+                @if (ViewData["Data"] != null)
+                {
+                    <button type="submit">Thêm vào giỏ hàng</button>
+                }
             }
+            else
+            {
+                <span>Sold</span>
+            }
+            
            
-        </div>
+            <span class="product-sold">Đã bán: 16 sản phẩm</span>
+          
+           
+        </form>
         @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
 
     </div>

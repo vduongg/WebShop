@@ -3,11 +3,11 @@
     margin: 0;
 }
 
-.category {
+.inventory {
     width: 100%;
 }
 
-.category-header {
+.inventory-header {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -86,12 +86,12 @@ td a {
     margin-right: 5px;
 }
 
-.add-category {
+.add-inventory {
     width: 150px;
     height: 32px;
 }
 
-    .add-category button {
+    .add-inventory button {
         border: none;
         color: white;
         width: 100%;
@@ -100,7 +100,7 @@ td a {
         background-color: green;
     }
 
-        .add-category button:hover {
+        .add-inventory button:hover {
             background-color: darkslategrey;
             cursor: pointer;
         }

@@ -68,7 +68,7 @@ namespace KaiserStore.Areas.Admin.Controllers
 
 
         [Area("Admin")]
-        [Route("/Admin/Category/Edit")]
+        [Route("/Admin/Category/Edit/{id}")]
         [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
@@ -82,7 +82,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
         [HttpPost]
         [Area("Admin")]
-        [Route("/Admin/Category/Edit")]
+        [Route("/Admin/Category/Edit/{id}")]
         [Authorize]
         public async Task<IActionResult> Edit(string id, CategoryVM categoryVM)
         {
@@ -99,7 +99,7 @@ namespace KaiserStore.Areas.Admin.Controllers
             return View();
         }
         [Area("Admin")]
-        [Route("/Admin/Category/Delete")]
+        [Route("/Admin/Category/Delete/{id}")]
         [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
@@ -120,7 +120,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
         [HttpPost, ActionName("Delete")]
         [Area("Admin")]
-        [Route("/Admin/Category/Delete")]
+        [Route("/Admin/Category/Delete/{id}")]
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(string id, CategoryVM categoryVM)
         {

@@ -8,10 +8,11 @@ namespace KaiserStore.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public AccountsVM User { get; set; }
+        public AccountsVM? User { get; set; }
         public string UserId { get; set; }
-        public ProductsVM Product { get; set; }
+        public ProductsVM? Product { get; set; }
         public int ProductId { get; set; }
+        [Range(1,9999)]
         public string Size { get; set; }
         public int quantity { get; set; }
     }

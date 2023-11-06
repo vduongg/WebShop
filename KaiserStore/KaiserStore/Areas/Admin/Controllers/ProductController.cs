@@ -54,6 +54,7 @@ namespace KaiserStore.Areas.Admin.Controllers
                 }
                 if(ModelState.IsValid)
                 {
+                    product.Id = 0;
                     _context.products.Add(p);
                     _context.SaveChanges();
                     return RedirectToAction("Product");
@@ -67,7 +68,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
 
         [Area("Admin")]
-        [Route("/Admin/Product/Edit")]
+        [Route("/Admin/Product/Edit/{id}")]
         [Authorize]
         public  IActionResult Edit(int id)
         {
@@ -79,7 +80,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
         [HttpPost]
         [Area("Admin")]
-        [Route("/Admin/Product/Edit")]
+        [Route("/Admin/Product/Edit/{id}")]
         [Authorize]
         public async Task<IActionResult> Edit(ProductsVM productVM)
         {
@@ -108,7 +109,7 @@ namespace KaiserStore.Areas.Admin.Controllers
 
 
         [Area("Admin")]
-        [Route("/Admin/Product/Delete")]
+        [Route("/Admin/Product/Delete/{id}")]
         [Authorize]
         public IActionResult Delete()
         {

@@ -21,9 +21,7 @@
                Sản phẩm
             </h3>
             <div class="right">
-                <div class="search-input">
-                    <input type="text" placeholder="Tìm kiếm..." />
-                </div>
+               
                 <form class="add-category" asp-action="Add">
                     <button type="submit"> Thêm sản phẩm</button>
                 </form>
@@ -38,7 +36,6 @@
                     <tr>
 
                         <th>STT</th>
-                        <th>ID</th>
                         <th>TÊN SẢN PHẨM</th>
                         <th>GIÁ SẢN PHẨM</th>
                         <th>LOẠI SẢN PHẨM</th>
@@ -53,7 +50,6 @@
                         <tr>
 
                             <td>@(Model.Count() - i)</td>
-                            <td>@Model[i].Id</td>
                             <td>@Model[i].producdName</td>
                             <td>@string.Format("{0:#,0}",int.Parse(Model[i].producdPrice))</td>
                             <td>@Model[i].categoryId</td>

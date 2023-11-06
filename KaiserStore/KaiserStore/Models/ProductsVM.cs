@@ -14,11 +14,11 @@ namespace KaiserStore.Models
         [MaxLength(100)]
         public string producdPrice { get; set; }
         [MaxLength]
-        public byte[] dataimage { get; set; }
+        public byte[]? dataimage { get; set; }
         public string status { get; set; }
         public List<SizeItem>? sizes { get; set; }
         public string categoryId { get; set; }
-        public CategoryVM category { get; set; }
+        public CategoryVM? category { get; set; }
        
         [NotMapped]
         public IFormFile file { get; set; }

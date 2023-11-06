@@ -2,6 +2,7 @@
 using KaiserStore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
 
@@ -20,26 +21,35 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> InventoryAsync()
         {
-            var ListSize = await _context.sizes.ToListAsync();
-            ViewData["ListSize"] = ListSize;
-            var product = _context.products.ToList();
+            var product = _context.products.
+                Include(s => s.sizes).
+                ToList();
 
             return View(product);
         }
         [Area("Admin")]
-        [Route("/Admin/Inventory/AddSize")]
+        [Route("/Admin/Inventory/AddSize/{id}")]
         [Authorize]
         public IActionResult AddSize(int id)
         {
             ViewData["id"] = id;
             return View();
         }
+        [Area("Admin")]
+        [Route("/Admin/Inventory/ImportHistory/{id}")]
+        [Authorize]
+        public IActionResult ImportHistory(int id)
+        {
+            var history = _context.importDetails.Where(s => s.ProductId == id).ToList();
+            return View(history);
+        }
         [HttpPost]
         [Area("Admin")]
-        [Route("/Admin/Inventory/AddSize")]
+        [Route("/Admin/Inventory/AddSize/{id}")]
         [Authorize]
-        public async Task<IActionResult> AddSize(SizeItem size)
+        public async Task<IActionResult> AddSize(SizeItem size, int id)
         {
+          
             var sizeId = await _context.sizes.Where(s=> s.ProductId == size.ProductId).ToListAsync();
             bool  check = false;
             foreach (var item in sizeId)
@@ -51,15 +61,20 @@ namespace KaiserStore.Areas.Admin.Controllers
             }
             if( check == false)
             {
-                _context.Add(size);
-                _context.SaveChanges();
-                return RedirectToAction("Inventory");
+                if(ModelState.IsValid)
+                {
+               
+                    _context.Add(size);
+                    _context.SaveChanges();
+                    return RedirectToAction("Inventory");
+                }
+                
             }
 
             return View();
         }
         [Area("Admin")]
-        [Route("/Admin/Inventory/Import")]
+        [Route("/Admin/Inventory/Import/{id}")]
         [Authorize]
         public IActionResult Import(int id)
         {
@@ -71,26 +86,29 @@ namespace KaiserStore.Areas.Admin.Controllers
         }
         [HttpPost]
         [Area("Admin")]
-        [Route("/Admin/Inventory/Import")]
+        [Route("/Admin/Inventory/Import/{id}")]
         [Authorize]
-        public async Task<IActionResult> Import(ImportDetails details)
+        public IActionResult Import(ImportDetails details, int id)
         {
-           
+            var listSize = _context.sizes.Where(s => s.ProductId == id).ToList();
+            ViewData["ListSize"] = listSize;
+            var product = _context.products.Find(id);
+            ViewData["product"] = product;
+
             details.Id = 0;
             details.DateTime = DateTime.Now;
-            _context.Add(details);
-            _context.SaveChanges();
-            var size = _context.sizes.Where(s => s.ProductId == details.ProductId).Where(s => s.Name == details.Size).FirstOrDefault();
-            if(size.Quantity > 0)
+            if( ModelState.IsValid)
             {
+                
+                _context.Add(details);
+                _context.SaveChanges();
+                var size = _context.sizes.Where(s => s.ProductId == details.ProductId).Where(s => s.Name == details.Size).FirstOrDefault();
                 size.Quantity = size.Quantity + details.quantity;
+                _context.SaveChanges();
+                return RedirectToAction("Inventory");
+
             }
-            else
-            {
-                size.Quantity = details.quantity;
-            }
-            _context.SaveChanges();
-            return RedirectToAction("Inventory");
+            return View();
         }
     }
 }

@@ -88,15 +88,20 @@ namespace KaiserStore.Controllers
             if (loginUser != null || loginemail != null)
             {
                 var name = "";
+                var id = "";
                 if(loginUser != null) {
                     name = loginUser.name;
+                    id = loginUser.username;
                 }
                 if (loginemail != null)
                 {
                     name = loginemail.name;
+                    id  = loginemail.username;
                 }
 
                 HttpContext.Session.SetString("UserSession", name);
+                HttpContext.Session.SetString("UserID", id);
+
                 return RedirectToAction("Home", "Home");
               
             }

@@ -10,9 +10,10 @@ namespace KaiserStore.Models
         public int Id{ get; set; }
 
         public string Name { get; set; }
-        public ProductsVM Product { get; set; }
+        public ProductsVM? Product { get; set; }
+      
         public int ProductId { get; set; }
-        public int Quantity { get; set; } = 0;
+        public int Quantity { get; set; } 
 
     }
 }

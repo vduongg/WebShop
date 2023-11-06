@@ -36,6 +36,8 @@
     color: black;
 }
 .wrapper-product {
+    max-height: 380px;
+    max-width: 310px;
     margin: 5px;
     border: 1px solid #d5cfcf;
     border-radius: 15px;

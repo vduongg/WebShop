@@ -7,6 +7,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
+    ViewData["page"] = "inventory";
     ViewData["Title"] = "Import";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }
@@ -15,14 +16,45 @@
 
 <html>  
 <head>
-
+    <link rel="stylesheet" href="~/css/StyleAdminImport.css" />
 </head>
 <body>
-    <div style="width: 100%; height: 100vh; display: flex; align-items:center; justify-content: center;">
-        <form style="display: flex; flex-direction: column; align-items: center;" class="productForm" enctype="multipart/form-data" method="post">
-            <h3 style="margin-bottom: 10px"> Nhập kho</h3>
-            <label>@product.producdName</label>
-            <input value="@product.Id" asp-for="ProductId" />
+    <div class="wrapper">
+          <h1>@product.producdName</h1>
+        <div class="wrap-import">
+            <div class="import-left">
+              
+                <img width="300" height="300" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(product.dataimage))" />
+              
+            </div>
+            <div class="import-right">
+                <div class="size">
+                    <h4>Size</h4>
+                    @foreach (var item in ListSize)
+                    {
+                        <option>@item.Name</option>
+
+                    }
+                </div>
+                <div class="quantity">
+                    <h4>Số lượng</h4>
+                    @foreach (var item in ListSize)
+                    {
+                        <option>@item.Quantity</option>
+
+                    }
+                </div>
+
+                
+            </div>
+
+        </div>
+      
+
+        <form method="post" asp-route-id="@product.Id">
+            <h3> Nhập kho</h3>
+
+            <input hidden value="@product.Id" asp-for="ProductId" />
             <select style="margin-bottom: 10px" asp-for="Size">
                 @foreach (var item in ListSize)
                 {
@@ -30,9 +62,13 @@
 
                 }
             </select>
-            <input placeholder="Số lượng" asp-for="quantity" />
+            <input min="1" placeholder="Số lượng" asp-for="quantity" />
+            <input min="1" placeholder="Giá nhập" asp-for="price" />
             <button type="submit">Nhập hàng</button>
         </form>
+
+        <span asp-validation-for="quantity"></span>
+        <span asp-validation-for="price"></span>
     </div>
 
 

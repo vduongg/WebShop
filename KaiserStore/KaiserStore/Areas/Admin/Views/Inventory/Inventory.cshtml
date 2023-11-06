@@ -7,6 +7,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
+    ViewData["id"] = 3;
     ViewData["page"] = "inventory";
     ViewData["Title"] = "Inventory";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
@@ -17,24 +18,21 @@
 <head>
     <link rel="stylesheet" href="~/css/StyleAdminInventory.css" />
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+  
+    
 </head>
 <body>
-    <div class="category">
-        <div class="category-header">
+    
+    <div class="inventory">
+        <div class="inventory-header">
             <h3>
                 Kho hàng
             </h3>
-            <div class="right">
-                <div class="search-input">
-                    <input type="text" placeholder="Tìm kiếm..." />
-                </div>
-              
-
-            </div>
+        
 
         </div>
 
-        <div class="category-body">
+        <div class="inventory-body">
             <table class="table">
                 <thead>
                     <tr>
@@ -66,52 +64,33 @@
                             <td>
                                 <div style="display: flex; justify-content: center; align-items: center;">
                                    
-                                        @if(ListSize.Count() > 0)
+                                   
+                                        @foreach(var item in Model[i].sizes)
                                         {
-                                            var List = new List<string>();
-                                            for(int j = 0;j < ListSize.Count();j++)
-                                            {
-                                                if(ListSize[j].ProductId == Model[i].Id)
-                                                {
-                                                    List.Add(ListSize[j].Name);
-                                                }
-                                            }
-                                            foreach(var item in List)
-                                            {
-                                                <span>@item|</span>
-                                            }
-
+                                        <span style="border: 1px solid; width: 20px; height: 20px"> @item.Name </span>
                                         }
-
+                                        
                                     <a asp-route-id="@Model[i].Id" asp-action="AddSize"><i class="fa-solid fa-square-plus fa-xl"></i></a>
                                 </div>
                                 
                             </td>
                             <td>
-                                   @if(ListSize.Count() > 0)
-                                    {
-                                            var List = new List<string>();
-                                            var total = 0;
-                                            for(int j = 0;j < ListSize.Count();j++)
-                                            {
-                                                if(ListSize[j].ProductId == Model[i].Id)
-                                                {
-                                                    if (ListSize[j].Quantity > 0)
-                                                    {
-                                                        total += ListSize[j].Quantity;
-                                                    }
-                                                }
-                                            }
-                                            <span>@total</span>
-                                                
-                                          
+                                    @{
+                                        var total = 0;
+                                    }
 
-                                    }  
+                                    @foreach (var item in Model[i].sizes)
+                                    {
+                                        total += item.Quantity;
+                                    }      
+
+                                   <span>@total</span> 
                             </td>
                             <td>
                                 <div style="display: flex; justify-content: center">
                                     
                                     <a asp-route-id="@Model[i].Id" asp-action="Import"><i class="fa-solid fa-file-import fa-xl"></i></a>
+                                    <a asp-route-id="@Model[i].Id" asp-action="ImportHistory"><i class="fa-solid fa-bars fa-xl"></i></a>
                                   
                                   
                                 </div>
@@ -130,7 +109,7 @@
         </div>
 
     </div>
-    <script src="~/js/AdminCategory.js"></script>
+    <script src="~/js/Admininventory.js"></script>
 </body>
 </html>
 

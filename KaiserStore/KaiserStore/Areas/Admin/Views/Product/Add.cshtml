@@ -5,7 +5,9 @@
 @model KaiserStore.Models.ProductsVM;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+
 @{
+    ViewData["page"] = "product";
     ViewData["Title"] = "Add";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }

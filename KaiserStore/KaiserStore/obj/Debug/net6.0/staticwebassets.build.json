@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6EQzW+6OuDDOtCSawhtjs+eaSAGMGLOwMICnkcRyRnI=",
+  "Hash": "OLlUThEYSZGs+oYyq/l2Oul7P63LEr0r4NzqkIUQY7Q=",
   "Source": "KaiserStore",
   "BasePath": "_content/KaiserStore",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\StyleAdminHome.css"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminImport.css",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "css/StyleAdminImport.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleAdminImport.css"
     },
     {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminInventory.css",
