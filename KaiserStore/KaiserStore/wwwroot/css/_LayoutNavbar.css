@@ -117,10 +117,7 @@ a{
    font-size: 14px;
    font-weight: 400;
 }
-.cart :hover{
-   transform: scale(1.15);
-   font-weight: 600;
-}
+
 .card-item {
     display: flex;
     align-items: center;

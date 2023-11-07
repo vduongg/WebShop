@@ -42,11 +42,11 @@
                 else
                 {
                     <div class="cart">
-                        <a href="#" class="card-item">
+                        <a href="/order" class="card-item">
                             <img src="~/image/cart-shopping-solid.svg" width="24px" height="24px" />
                             <span>Giỏ hàng</span>
                             <span>/</span>
-                            <span>0đ</span>
+                            <span>@ViewData["cartTotal"]đ</span>
                         </a>
                     </div>
                     <span style="font-size: 14px; padding-right: 10px">Xin chào @ViewData["Data"]</span>

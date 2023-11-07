@@ -20,6 +20,13 @@ namespace KaiserStore.Controllers
         [Route("/")]
         public async Task<IActionResult> Home()
         {
+            var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            var total = 0;
+            foreach (var cartItem in cart)
+            {
+                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+            }
+            ViewData["cartTotal"] = total;
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
             var product = _context.products.ToList();
@@ -41,6 +48,13 @@ namespace KaiserStore.Controllers
         [Route("/Category/{id}")]
         public async Task<IActionResult> Category(string id)
         {
+            var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            var total = 0;
+            foreach (var cartItem in cart)
+            {
+                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+            }
+            ViewData["cartTotal"] = total;
             if (HttpContext.Session.GetString("UserSession") != null)
             {
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
@@ -56,6 +70,13 @@ namespace KaiserStore.Controllers
         [Route("/Product/{id}")]
         public  IActionResult Product(int id)
         {
+            var cart =  _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToList();
+            var total = 0;
+            foreach (var cartItem in cart)
+            {
+                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+            }
+            ViewData["cartTotal"] = total;
             if (HttpContext.Session.GetString("UserSession") != null)
             {
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
@@ -74,15 +95,18 @@ namespace KaiserStore.Controllers
         [Route("/Product/{id}")]
         public async Task<IActionResult> Product(Cart cartItem, int id)
         {
-            
-           
+            var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            var total = 0;
+            foreach (var c in cart)
+            {
+                total += (cartItem.quantity * int.Parse(c.Product.producdPrice));
+            }
+            ViewData["cartTotal"] = total;
+
             if (HttpContext.Session.GetString("UserSession") != null)
             {
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
                 ViewData["ID"] = HttpContext.Session.GetString("UserID");
-                
-
-
             }
             var product = await _context.products.FindAsync(id);
             ViewData["productItem"] = product;
@@ -128,16 +152,121 @@ namespace KaiserStore.Controllers
         [Route("/Order")]
         public async Task<IActionResult> Order()
         {
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+                ViewData["ID"] = HttpContext.Session.GetString("UserID");
+
+            }
+            else
+            {
+                return RedirectToAction("login", "accounts");
+            }
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
+            var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            var total = 0;
+            foreach (var cartItem in cart)
+            {
+                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+            }
+            ViewData["cartTotal"] = total;
+            ViewData["cart"] = cart;
             return View();
 
         }
         [Route("/Payments")]
         public async Task<IActionResult> Payments()
         {
+            var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            var total = 0;
+            foreach (var cartItem in cart)
+            {
+                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+            }
+            ViewData["cartTotal"] = total;
+            ViewData["cart"] = cart;
+
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+                ViewData["ID"] = HttpContext.Session.GetString("UserID");
+
+            }
+            else
+            {
+                return RedirectToAction("login", "accounts");
+            }
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
+            return View();
+        }
+        [HttpPost]
+        [Route("/Payments")]
+        public async Task<IActionResult> Payments(Payment payment)
+        {
+            Order order = new Order();
+            var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            var total = 0;
+            var count = 0;
+            foreach (var cartItem in cart)
+            {
+                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                count += cartItem.quantity;
+            }
+            ViewData["cartTotal"] = total;
+            ViewData["cart"] = cart;
+
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+                ViewData["ID"] = HttpContext.Session.GetString("UserID");
+
+            }
+            else
+            {
+                return RedirectToAction("login", "accounts");
+            }
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            ViewData["category"] = category;
+            if(ModelState.IsValid)
+            {
+                payment.PaymentId = 0;
+                payment.Total = count;
+                payment.DateTime = DateTime.Now;
+                _context.Add(payment);
+                _context.SaveChanges();
+
+                var p = await _context.payments.Where(p => p.UserId == HttpContext.Session.GetString("UserID")).ToListAsync();
+
+
+                foreach (var item in cart)
+                {
+                    order.OrderId = 0;
+                    order.PaymentId = p[p.Count() - 1].PaymentId;
+                    order.ProductId = item.ProductId;
+                    order.Size = item.Size;
+                    order.quantity = item.quantity;
+                    _context.Add(order);
+                    _context.SaveChanges();
+
+                    _context.Remove(_context.carts.Find(item.Id));
+                    _context.SaveChanges();
+
+                    var product = await _context.sizes.Where(p => p.ProductId == item.ProductId).Where(s=> s.Name == item.Size).FirstOrDefaultAsync();
+                    product.Quantity = product.Quantity - item.quantity;
+                    _context.SaveChanges();
+                 
+
+                }
+
+                
+                
+                return RedirectToAction("home");
+            }
+          
+
+
             return View();
         }
 

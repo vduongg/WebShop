@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OLlUThEYSZGs+oYyq/l2Oul7P63LEr0r4NzqkIUQY7Q=",
+  "Hash": "2bj/irGb6GSCvN9jgwvCoyBoFb9uUMNs9pCCN2PDpOk=",
   "Source": "KaiserStore",
   "BasePath": "_content/KaiserStore",
   "Mode": "Default",
@@ -202,6 +202,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\StyleOrder.css"
+    },
+    {
+      "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StylePayment.css",
+      "SourceId": "KaiserStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\",
+      "BasePath": "_content/KaiserStore",
+      "RelativePath": "css/StylePayment.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StylePayment.css"
     },
     {
       "Identity": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleProduct.css",

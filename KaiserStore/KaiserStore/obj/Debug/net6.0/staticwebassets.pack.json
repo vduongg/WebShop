@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\css\\StyleOrder.css"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StylePayment.css",
+      "PackagePath": "staticwebassets\\css\\StylePayment.css"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleProduct.css",
       "PackagePath": "staticwebassets\\css\\StyleProduct.css"
     },

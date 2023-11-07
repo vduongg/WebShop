@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    List<Cart> cart = ViewData["cart"] != null ? (List<Cart>)ViewData["cart"] : null;
+  
+
+}
 @{
     ViewData["Title"] = "Order";
     Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
@@ -14,14 +18,45 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="order-left">
-            <span>Giỏ hàng của tôi</span>
-        </div>
-        <div class="order-right">
-            <span>Thông tin đơn hàng</span>
-        </div>
+      
+            <h1>Giỏ hàng của tôi</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ẢNH SẢN PHẨM</th>
+                        <th>TÊN SẢN PHẨM</th>
+                        <th>GIÁ SẢN PHẨM</th>
+                        <th>SIZE</th>
+                        <th>SỐ LƯỢNG</th>
+                   
+                    </tr>
+                </thead>
+              
 
+                    @foreach (var item in cart)
+                    {
+                        <tbody>
+                        <tr>
+                            <td><img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.Product.dataimage))" width="100px" height="100px" /></td>
+                            <td><h4>@item.Product.producdName</h4></td>
+                            <td>@item.Product.producdPrice</td>
+                            <td>@item.Size </td>
+                            <td><span>@item.quantity</span></td>
+                            
+                        <tr>
+                        </tbody>
+                    }
 
+               
+            </table>
+            @if(cart.Count() > 0)
+            {
+                <div class="payment">
+                    <a href="/payments"> Đặt hàng </a>
+                </div>
+            }
+            
+           
 
 
     </div>

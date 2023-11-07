@@ -8,7 +8,7 @@ namespace KaiserStore.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PaymentId { get; set; }
-        public AccountsVM User { get; set; }
+        public AccountsVM? User { get; set; }
         public string UserId { get; set; }
         public string Name { get; set; }
 
@@ -16,9 +16,9 @@ namespace KaiserStore.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public string City { get; set; }
-        public int Total { get; set; }
+        public int? Total { get; set; }
         public int TotalPrice { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime? DateTime { get; set; }
         public List<Order>? Orders { get; set; }
   
     }

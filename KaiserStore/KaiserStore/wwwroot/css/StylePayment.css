@@ -1,0 +1,99 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    left: 0;
+}
+.paymentForm {
+    position: relative;
+    margin-left: 200px;
+    
+}
+
+.name, .phone, .email, .address, .city {
+    display: flex;
+    width: 600px;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid;
+    padding-left: 10px;
+    background-color: #f7f7f7;
+}
+
+.paymentTitle {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+.orderTitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+.name span, .phone span, .email span, .address span, .city span {
+    padding-top: 10px;
+    position: absolute;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+
+.name input, .phone input, .email input, .address input, .city input {
+    padding-top: 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #f7f7f7;
+}
+
+
+.paymentForm a {
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 40px;
+}
+.paymentForm a:hover {
+    color: black;
+
+}
+.error {
+    color: red;
+}
+.payment-left {
+    width: 60%;
+}
+.payment-right {
+    width: 40%;
+}
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+thead th {
+    font-size: 10px;
+    position: sticky;
+    top: 0;
+}
+
+th, td {
+    padding: 20px 20px;
+    word-break: break-all;
+    text-align: center;
+}
+.payment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.payment button{
+
+    color: white;
+    background-color: black;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-right: 280px;
+}

@@ -1,8 +1,105 @@
-﻿
+﻿@model KaiserStore.Models.Payment;
 @{
-    ViewData["Title"] = "Payments";
+    ViewData["Title"] = "Thanh toán";
     Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
 }
+@{
+    List<Cart> cart = ViewData["cart"] != null ? (List<Cart>)ViewData["cart"] : null;
 
-<h1>Payments</h1>
 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StylePayment.css" />
+</head>
+<body>
+    <form action="Payments" method="post">
+        <div class="wrapper">
+            <div class="payment-left">
+                <div class="paymentForm">
+                    <div class="paymentTitle">Thanh toán</div>
+                    <div class="name">
+                        <span id="name">Họ và tên</span>
+                        <input type="text" oninput="userType(this.value,'name')" value="" asp-for="Name" />
+                    </div>
+                    <span asp-validation-for="Name" class="error"></span>
+                    <div class="phone">
+                        <span id="phone">Số điện thoại</span>
+                        <input type="text" oninput="userType(this.value,'phone')" value="" asp-for="Phone" />
+                    </div>
+                    <span asp-validation-for="Phone" class="error"></span>
+                    <div class="address">
+                        <span id="address">Địa chỉ</span>
+                        <input type="text" oninput="userType(this.value,'address')" value="" asp-for="Address" />
+                    </div>
+                    <span asp-validation-for="Address" class="error"></span>
+                    <div class="email">
+                        <span id="email">Email</span>
+                        <input type="text" oninput="userType(this.value,'email')" value="" asp-for="Email" />
+                    </div>
+                    <span asp-validation-for="Email" class="error"></span>
+                    <div class="city">
+                        <span id="city">Thành phố</span>
+                        <input type="text" oninput="userType(this.value,'city')" value="" asp-for="City" />
+                    </div>
+                    <span asp-validation-for="City" class="error"></span>
+
+                </div>
+            </div>
+            
+            <div class="payment-right">
+                <span class="orderTitle">Thông tin hóa đơn</span>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ẢNH SẢN PHẨM</th>
+                            <th>TÊN SẢN PHẨM</th>
+                            <th>SIZE</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>THÀNH TIỀN</th>
+
+
+                        </tr>
+                    </thead>
+
+                    
+                    @foreach (var item in cart)
+                    {
+                        
+                        <tbody>
+                            <tr>
+                                <td><img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.Product.dataimage))" width="50px" height="50px" /></td>
+                                <td><h6>@item.Product.producdName</h6></td>
+                                <td>@item.Size </td>
+                                <td><span>@item.quantity</span></td>
+                                <td>@(int.Parse(item.Product.producdPrice) * item.quantity)</td>
+                            <tr>
+                        </tbody>
+                    }
+
+
+                </table>
+                <div class="payment">
+                    <h5 style="margin-right: 280px;">Tổng tiền: @ViewData["cartTotal"]đ</h5>
+                    <input hidden asp-for="UserId" value="@ViewData["ID"]" />
+                    <input hidden asp-for="TotalPrice" value="@ViewData["cartTotal"]" />
+                    @if(cart.Count() > 0)
+                    {
+                        <button type="submit">Đặt hàng</button>
+                    }
+                    
+                </div>
+                
+            </div>
+
+        </div>
+
+
+        <script src="~/js/Register.js"></script>
+    </form>
+   
+</body>
+</html>
