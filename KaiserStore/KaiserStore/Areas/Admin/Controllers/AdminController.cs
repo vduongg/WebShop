@@ -20,25 +20,60 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Area("Admin")]
         [Route("Admin/Home")]
         [Authorize]
-        public IActionResult AdminHome()
+        public async Task<IActionResult> AdminHome()
         {
-            ClaimsPrincipal claimUser = HttpContext.User;
-            if (claimUser.Identity.IsAuthenticated)
+            List<HomeItem> ListHomeItems = new List<HomeItem>();
+            HomeItem homeItem = new HomeItem();
+            HomeItem homeItem1 = new HomeItem();
+            HomeItem homeItem2 = new HomeItem();
+
+            var size = await _context.sizes.ToListAsync();
+            var spCon = 0;
+            foreach (var item in size)
             {
-                return View();
+                spCon += item.Quantity;
             }
-            
-            return RedirectToAction("AdminLogin");
+            homeItem.name = "Sản phẩm còn lại";
+            homeItem.icon = "fa-solid fa-warehouse";
+            homeItem.value = spCon;
+            homeItem.color = "#cd3333";
+            ListHomeItems.Add(homeItem);
+        
+
+            var order = await _context.orders.ToListAsync();
+            var spDB = 0;
+            foreach (var item in order)
+            {
+                spDB += item.quantity;
+            }
+            homeItem1.name = "Sản phẩm đã bán";
+            homeItem1.icon = "fa-solid fa-truck-fast";
+            homeItem1.value = spDB;
+            homeItem1.color = "#262687";
+            ListHomeItems.Add(homeItem1);
+          
+
+            var sales = await _context.orders.Include("Product").ToListAsync();
+            var dt = 0;
+            foreach (var item in sales)
+            {
+                dt += item.quantity * int.Parse(item.Product.producdPrice);
+            }
+            homeItem2.name = "Doanh thu";
+            homeItem2.icon = "fa-solid fa-money-check-dollar";
+            homeItem2.value = dt;
+            homeItem2.color = "green";
+            ListHomeItems.Add(homeItem2);
+
+            ViewData["HomeItem"] = ListHomeItems;
+            return View();
+          
         }
         [Area("Admin")]
         [Route("/Admin/Login")]
         public IActionResult AdminLogin()
         {
-            ClaimsPrincipal claimUser = HttpContext.User;
-            if (claimUser.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("AdminHome");
-            }
+           
         
             return View();
             

@@ -20,7 +20,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> Category()
         {
-            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            var category = await _context.categorys.ToListAsync();
             return View(category);
 
         }
@@ -140,7 +140,26 @@ namespace KaiserStore.Areas.Admin.Controllers
             return View();
         }
 
-        
+        [Area("Admin")]
+        [Route("/Admin/Category/Restore/{id}")]
+        [Authorize]
+        public IActionResult Restore(string id)
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        [Area("Admin")]
+        [Route("/Admin/Category/Restore/{id}")]
+
+        public IActionResult Restore(GetStatus get, string id)
+        {
+            var category = _context.categorys.Find(id);
+            category.status = get.status;
+            _context.SaveChanges();
+            return RedirectToAction("Category");
+        }
+
         [Area("Admin")]
         public async Task<IActionResult> AdminLogOutAsync()
         {

@@ -19,10 +19,12 @@ namespace KaiserStore.Models
         public List<SizeItem>? sizes { get; set; }
         public string categoryId { get; set; }
         public CategoryVM? category { get; set; }
-       
+        public string describe { get; set; }
+        public int sold { get; set; } = 0;
         [NotMapped]
         public IFormFile file { get; set; }
         public List<Cart>? carts { get; set; }
-     
+        public List<Order>? orders { get; set; }
+
     }
 }

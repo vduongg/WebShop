@@ -1,5 +1,7 @@
 ﻿using KaiserStore.Data;
 using KaiserStore.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -109,6 +111,13 @@ namespace KaiserStore.Areas.Admin.Controllers
 
             }
             return View();
+        }
+        [Area("Admin")]
+        public async Task<IActionResult> AdminLogOutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("AdminLogin", "Admin");
+
         }
     }
 }

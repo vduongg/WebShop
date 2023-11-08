@@ -52,13 +52,13 @@ namespace KaiserStore.Migrations
 
             modelBuilder.Entity("KaiserStore.Models.Cart", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Size")
@@ -66,6 +66,7 @@ namespace KaiserStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("quantity")
@@ -152,6 +153,8 @@ namespace KaiserStore.Migrations
 
                     b.HasIndex("PaymentId");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("orders");
                 });
 
@@ -171,7 +174,7 @@ namespace KaiserStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateTime")
+                    b.Property<DateTime?>("DateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -186,7 +189,7 @@ namespace KaiserStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Total")
+                    b.Property<int?>("Total")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalPrice")
@@ -195,6 +198,10 @@ namespace KaiserStore.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PaymentId");
 
@@ -205,19 +212,22 @@ namespace KaiserStore.Migrations
 
             modelBuilder.Entity("KaiserStore.Models.ProductsVM", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("categoryId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<byte[]>("dataimage")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("describe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("producdName")
                         .IsRequired()
@@ -228,6 +238,9 @@ namespace KaiserStore.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("sold")
+                        .HasColumnType("int");
 
                     b.Property<string>("status")
                         .IsRequired()
@@ -269,11 +282,15 @@ namespace KaiserStore.Migrations
                 {
                     b.HasOne("KaiserStore.Models.ProductsVM", "Product")
                         .WithMany("carts")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("KaiserStore.Models.AccountsVM", "User")
                         .WithMany("carts")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 
@@ -288,7 +305,15 @@ namespace KaiserStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("KaiserStore.Models.ProductsVM", "Product")
+                        .WithMany("orders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Payment");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("KaiserStore.Models.Payment", b =>
@@ -344,6 +369,8 @@ namespace KaiserStore.Migrations
             modelBuilder.Entity("KaiserStore.Models.ProductsVM", b =>
                 {
                     b.Navigation("carts");
+
+                    b.Navigation("orders");
 
                     b.Navigation("sizes");
                 });

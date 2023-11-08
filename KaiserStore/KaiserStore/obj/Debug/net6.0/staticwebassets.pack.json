@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\StyleAdminCategory.css"
     },
     {
+      "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminDetails.css",
+      "PackagePath": "staticwebassets\\css\\StyleAdminDetails.css"
+    },
+    {
       "Id": "E:\\Asp.net Core  MVC 6\\Github\\WebShop\\KaiserStore\\KaiserStore\\wwwroot\\css\\StyleAdminHome.css",
       "PackagePath": "staticwebassets\\css\\StyleAdminHome.css"
     },

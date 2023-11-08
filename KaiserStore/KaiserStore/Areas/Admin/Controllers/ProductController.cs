@@ -111,11 +111,41 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Area("Admin")]
         [Route("/Admin/Product/Delete/{id}")]
         [Authorize]
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
             return View();
         }
+        [HttpPost]
+        [Authorize]
+        [Area("Admin")]
+        [Route("/Admin/Product/Delete/{id}")]
+        
+        public IActionResult Delete(GetStatus get, int id)
+        {
+            var product = _context.products.Find(id);
+            product.status = get.status;
+            _context.SaveChanges();
+            return RedirectToAction("Product");
+        }
+        [Area("Admin")]
+        [Route("/Admin/Product/Restore/{id}")]
+        [Authorize]
+        public IActionResult Restore(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        [Area("Admin")]
+        [Route("/Admin/Product/Restore/{id}")]
 
+        public IActionResult Restore(GetStatus get, int id)
+        {
+            var product = _context.products.Find(id);
+            product.status = get.status;
+            _context.SaveChanges();
+            return RedirectToAction("Product");
+        }
         [Area("Admin")]
         public async Task<IActionResult> AdminLogOutAsync()
         {

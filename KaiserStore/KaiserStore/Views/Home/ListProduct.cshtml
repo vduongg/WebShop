@@ -1,0 +1,66 @@
+﻿@{
+    List<Order> order = ViewData["order"] != null ? (List<Order>)ViewData["order"] : null;
+
+
+}
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleOrder.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+
+        <h1>Danh sách sản phẩm</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ẢNH SẢN PHẨM</th>
+                    <th>TÊN SẢN PHẨM</th>
+                    <th>GIÁ SẢN PHẨM</th>
+                    <th>SIZE</th>
+                    <th>SỐ LƯỢNG</th>
+
+                </tr>
+            </thead>
+
+
+            @foreach (var item in order)
+            {
+                <tbody>
+                    <tr>
+                        <td><img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.Product.dataimage))" width="100px" height="100px" /></td>
+                        <td><h4>@item.Product.producdName</h4></td>
+                        <td>@item.Product.producdPrice</td>
+                        <td>@item.Size </td>
+                        <td><span>@item.quantity</span></td>
+
+                    <tr>
+                </tbody>
+            }
+
+
+        </table>
+
+
+
+
+    </div>
+
+
+
+
+
+</body>
+</html>
+
+
+

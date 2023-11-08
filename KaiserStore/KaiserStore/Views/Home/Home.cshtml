@@ -2,6 +2,8 @@
 
 @{
     List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+    List<ProductsVM> bestSell = ViewData["bestSell"] != null ? (List<ProductsVM>)ViewData["bestSell"] : null;
+}
 }
 
 @{
@@ -92,7 +94,7 @@
 
                             <span class="product-name">@Model[i].producdName</span>
                             <span class="product-price">Giá bán: @Model[i].producdPrice</span>
-                            <span class="product-sold">Đã bán: 16 sản phẩm</span>
+                            <span class="product-sold">Đã bán: @Model[i].sold sản phẩm</span>
                             @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                         </a>
 
@@ -106,7 +108,7 @@
 
             </div>
             
-            <a href="#" class="p-footer">Xem thêm sản phẩm...</a>
+            
         </div>
         <div class="wrapper-product">
             <div class="p-header">
@@ -123,23 +125,23 @@
 
             </div>
             <div class="list-product">
-                @if (Model.Count() > 0)
+                @if (bestSell.Count() > 0)
                 {
                     int max = 0;
-                    if (Model.Count() > 6)
+                    if (bestSell.Count() > 6)
                     {
-                        max = Model.Count() - 6;
+                        max = bestSell.Count() - 6;
                     }
-                    @for (int i = Model.Count() - 1; i >= max; i--)
+                    @for (int i = bestSell.Count() - 1; i >= max; i--)
                     {
-                        <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@Model[i].Id" class="product">
+                        <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@bestSell[i].Id" class="product">
                             <div class="product-img">
-                                <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model[i].dataimage))" />
+                                <img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(bestSell[i].dataimage))" />
                             </div>
 
-                            <span class="product-name">@Model[i].producdName</span>
-                            <span class="product-price">Giá bán: @Model[i].producdPrice</span>
-                            <span class="product-sold">Đã bán: 16 sản phẩm</span>
+                            <span class="product-name">@bestSell[i].producdName</span>
+                            <span class="product-price">Giá bán: @bestSell[i].producdPrice</span>
+                            <span class="product-sold">Đã bán: @bestSell[i].sold sản phẩm</span>
                             @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                         </a>
 
@@ -155,7 +157,7 @@
                
             </div>
 
-            <a href="#" class="p-footer">Xem thêm sản phẩm...</a>
+            
         </div>
         </div>
         

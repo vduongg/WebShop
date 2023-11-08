@@ -1,0 +1,113 @@
+﻿@model KaiserStore.Models.GetStatus;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+@using KaiserStore.Models;
+@{
+    Payment payment = ViewData["payment"] != null ? (Payment)ViewData["payment"] : null;
+    List<Order> product = ViewData["product"] != null ? (List<Order>)ViewData["product"] : null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleAdminDetails.css" />
+</head>
+<body>
+       
+        <div class="wrapper">
+          
+            <div class="payment-left">
+            <span class="orderTitle">Thông tin hóa đơn</span>
+                <div class="paymentForm">
+                <div class="name">
+                        <h4>Họ và tên: </h4>
+                        <label>@payment.Name</label>
+                    </div>
+                    <div class="phone">
+                        <h4>Số điện thoại:</h4>
+                        <label>@payment.Phone</label>
+                    </div>
+                    <div class="email">
+                        <h4>Email:</h4>
+                        <label>@payment.Email</label>
+                    </div>
+                    <div class="address">
+                        <h4>Địa chỉ:</h4>
+                        <label>@payment.Address</label>
+                    </div>
+                    <div class="city">
+                        <h4>Thành phố:</h4>
+                    <label>@payment.City</label>
+                    </div>
+                    <div class="datetime">
+                        <h4>Thời gian đặt hàng:</h4>
+                        <label>@payment.DateTime</label>
+                    </div>
+                    <div class="status">
+                        <h4>Trạng thái</h4>
+                        <label>Đã gửi</label>
+                    </div>
+                   
+                   
+
+                </div>
+            </div>
+            
+            <div class="payment-right">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ẢNH SẢN PHẨM</th>
+                            <th>TÊN SẢN PHẨM</th>
+                            <th>SIZE</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>THÀNH TIỀN</th>
+
+
+                        </tr>
+                    </thead>
+
+                    
+                    @foreach (var item in product)
+                    {
+                        
+                        <tbody>
+                            <tr>
+                                <td><img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.Product.dataimage))" width="50px" height="50px" /></td>
+                                <td><h6>@item.Product.producdName</h6></td>
+                                <td>@item.Size </td>
+                                <td><span>@item.quantity</span></td>
+                                <td>@(int.Parse(item.Product.producdPrice) * item.quantity)</td>
+                            <tr>
+                        </tbody>
+                    }
+
+
+                </table>
+                
+            </div>
+
+       
+
+        </div>
+
+    <form class="update" asp-route-id ="@payment.PaymentId" method="post">
+        <h3>Cập nhật trạng thái</h3>
+        <select asp-for="status">
+            <option>Đang chờ</option>
+            <option>Đã gửi</option>
+            <option>Thành công</option>
+            <option>Hủy</option>
+        </select>
+        <button type="submit">Cập nhật</button>
+    </form>
+       
+
+   
+</body>
+</html>

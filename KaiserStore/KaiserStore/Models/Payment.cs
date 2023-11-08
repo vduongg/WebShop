@@ -18,6 +18,7 @@ namespace KaiserStore.Models
         public string City { get; set; }
         public int? Total { get; set; }
         public int TotalPrice { get; set; }
+        public string status { get; set; }
         public DateTime? DateTime { get; set; }
         public List<Order>? Orders { get; set; }
   

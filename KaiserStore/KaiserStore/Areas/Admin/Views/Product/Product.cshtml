@@ -40,7 +40,9 @@
                         <th>GIÁ SẢN PHẨM</th>
                         <th>LOẠI SẢN PHẨM</th>
                         <th>ẢNH SẢN PHẨM</th>
+                        <th>TRẠNG THÁI</th>
                         <th>HÀNH ĐỘNG</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -59,11 +61,23 @@
                                 </div>
                                
                             </td>
+                            <td>@Model[i].status</td>
                             <td>
-                                <div style="display: flex; justify-content: center">
-                                    <a asp-route-id="@Model[i].Id" asp-action="Edit"><i class="fa-solid fa-pen-to-square" style="color: black;"></i></a>
-                                    <a asp-route-id="@Model[i].Id" asp-action="Delete"><i class="fa-solid fa-trash-can" style="color: black;"></i></a>
-                                </div>
+                                @if(Model[i].status == "active")
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        <a asp-route-id="@Model[i].Id" asp-action="Edit"><i class="fa-solid fa-pen-to-square" style="color: black;"></i></a>
+                                        <a asp-route-id="@Model[i].Id" asp-action="Delete"><i class="fa-solid fa-trash-can" style="color: black;"></i></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        <a asp-route-id="@Model[i].Id" asp-action="Restore"><i class="fa-solid fa-clock-rotate-left" style="color: black;"></i></a>
+                                        
+                                    </div>
+                                }
+
                                
                             </td>
                         </tr>

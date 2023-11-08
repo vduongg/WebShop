@@ -47,22 +47,35 @@
                     
                     @for(int i = 0; i< Model.Count(); i++)
                     {
+                            <tr>
 
-                        <tr>
-                            
-                            <td>@(i+1)</td>
-                            <td>@Model[i].id </td>
-                            <td>@Model[i].namecategory</td>
-                            <td>@Model[i].status</td>
-                            <td>
-                                <div style="display: flex; justify-content: center">
-                                    <a  asp-route-id="@Model[i].id" asp-action="Edit"><i class="fa-solid fa-pen-to-square" style="color: black;"></i></a>
-                                    <a  asp-route-id="@Model[i].id" asp-action="Delete"><i class="fa-solid fa-trash-can" style="color: black;"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                                <td>@(i + 1)</td>
+                                <td>@Model[i].id </td>
+                                <td>@Model[i].namecategory</td>
+                                <td>@Model[i].status</td>
+                                <td>
 
-                       
+                                @if (Model[i].status == "active")
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        <a asp-route-id="@Model[i].id" asp-action="Edit"><i class="fa-solid fa-pen-to-square" style="color: black;"></i></a>
+                                        <a asp-route-id="@Model[i].id" asp-action="Delete"><i class="fa-solid fa-trash-can" style="color: black;"></i></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        <a asp-route-id="@Model[i].id" asp-action="Restore"><i class="fa-solid fa-clock-rotate-left" style="color: black;"></i></a>
+
+                                    </div>
+                                }
+                                </td>
+
+                            </tr>
+
+
+                      
+
                     }
                     
                   

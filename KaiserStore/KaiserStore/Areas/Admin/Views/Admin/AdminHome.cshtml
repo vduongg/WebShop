@@ -1,7 +1,9 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    Layout = null;
+
+    List<KaiserStore.Models.HomeItem> HomeItem = ViewData["HomeItem"] != null ? (List<KaiserStore.Models.HomeItem>)ViewData["HomeItem"] : null;
 }
+
 
 @{
     ViewData["page"] = "home";
@@ -19,9 +21,29 @@
     <link rel="stylesheet" href="~/css/StyleAdminHome.css" />
 </head>
 <body>
-    <div>
-        <h1>Trang chu admin</h1>
+    <div class="wrap-box">
+       
+        @foreach(var item in HomeItem)
+        {
+            <div class="box" style="background-color: @item.color;">
+                
+                
+                    <div class="icon">
+                        <i class="@item.icon"></i>
+                    </div>
+                    <div class="title">
+                        <label>@item.name:</label>
+                    <label>@string.Format("{0:#,0}",@item.value)</label>
+                    </div>
+                
+            </div>
+
+        }
+       
+        
+    
     </div>
+   
     
 
  

@@ -80,16 +80,31 @@
                         </a>
                     </div>
                 }
+                @if (ViewData["page"] == "listorder")
+                {
+
+                    <div class="side__link active">
+                        <a href="~/Admin/ListOrder">
+
+                            <img src="~/image/donhang.svg" />
+                            <span id="title">Đơn hàng</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="side__link">
+                        <a href="~/Admin/ListOrder">
+
+                            <img src="~/image/donhang.svg" />
+                            <span id="title">Đơn hàng</span>
+                        </a>
+                    </div>
+                }
               
 
 
-                <div class="side__link">
-                    <a href="#">
-
-                        <img src="~/image/donhang.svg" />
-                        <span id="title">Đơn hàng</span>
-                    </a>
-                </div>
+              
                 @if (ViewData["page"] == "inventory")
                 {
 

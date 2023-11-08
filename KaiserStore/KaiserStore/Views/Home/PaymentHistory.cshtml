@@ -1,0 +1,72 @@
+﻿@{
+    List<Payment> payment = ViewData["payment"] != null ? (List<Payment>)ViewData["payment"] : null;
+
+
+}
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleOrder.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+
+        <h1>Lịch sử đặt hàng</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>TÊN NGƯỜI MUA</th>
+                    <th>SỐ ĐIỆN THOẠI</th>
+                    <th>EMAIL</th>
+                    <th>ĐỊA CHỈ</th>
+                    <th>SỐ LƯỢNG</th>
+                    <th>TỔNG TIỀN</th>
+                    <th>NGÀY MUA</th>
+                    <th>TRẠNG THÁI</th>
+                    <th>HÀNH ĐỘNG</th>
+                 
+                </tr>
+            </thead>
+
+
+            @for( int i = payment.Count() - 1; i >= 0; i--){
+
+                <tbody>
+                   
+                    <tr>
+                        <td>@payment[i].Name</td>
+                        <td>@payment[i].Phone </td>
+                        <td>@payment[i].Email</td>
+                        <td>@payment[i].Address</td>
+                        <td>@payment[i].Total</td>
+                        <td>@payment[i].TotalPrice</td>
+                        <td>@payment[i].DateTime</td>
+                        <td>@payment[i].status</td>
+                        <td><a asp-action="ListProduct" asp-route-id="@payment[i].PaymentId"><i class="fa-solid fa-eye fa-xl"></i></a></td>
+
+                    <tr>
+                </tbody>
+            }
+
+
+        </table>
+
+    </div>
+
+
+
+
+
+</body>
+</html>
+
+
+
