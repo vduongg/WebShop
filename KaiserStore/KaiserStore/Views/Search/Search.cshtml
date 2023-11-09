@@ -1,0 +1,54 @@
+﻿@{
+    List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+    List<ProductsVM> product = ViewData["product"] != null ? (List<ProductsVM>)ViewData["product"] : null;
+}
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Category.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="category-right">
+
+            @foreach (var item in product)
+            {
+                <div class="wrapper-product">
+                    <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@item.Id">
+                        <div class="product-img">
+                            <img width="100%" height="100%" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))" />
+                        </div>
+
+                        <span class="product-name">@item.producdName </span>
+                        <span class="product-price">@item.producdPrice</span>
+                        <span class="product-sold">Đã bán: @item.sold sản phẩm</span>
+                        @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
+                    </a>
+
+                </div>
+
+
+
+            }
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

@@ -39,9 +39,15 @@
                         <tr>
                             <td><img src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.Product.dataimage))" width="100px" height="100px" /></td>
                             <td><h4>@item.Product.producdName</h4></td>
-                            <td>@item.Product.producdPrice</td>
+                            <td>@string.Format("{0:#,0}",@item.Product.producdPrice)</td>
                             <td>@item.Size </td>
                             <td><span>@item.quantity</span></td>
+                        <td>
+                            <form asp-route-id="@item.Id" asp-action="Order" method="post">
+                                <button style="background-color: transparent; border: none;" type="submit"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                            </form>
+                        
+                            </td>
                             
                         <tr>
                         </tbody>

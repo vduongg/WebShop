@@ -1,6 +1,7 @@
-﻿@model List<KaiserStore.Models.ProductsVM>;
+﻿
 @{
     List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+    List<ProductsVM> product = ViewData["product"] != null ? (List<ProductsVM>)ViewData["product"] : null;
 }
 @{
     ViewData["Title"] = "Category";
@@ -18,15 +19,20 @@
 <body>
     <div class="wrapper">
         <div class="category-left">
-            
-            <h3> <i class="fa-solid fa-filter"></i> Lọc sản phẩm</h3>
-            <div class="filter">
 
+            <h3> <i class="fa-solid fa-filter"></i>Giá</h3>
+            <div class="filter">
+                <form  asp-action="Category" method="get">
+                    <input type="number" placeholder="Từ" name="sPrice" />
+                    <input type="number" placeholder="Đến" name="ePrice"  />
+                    <button type="submit">Lọc</button>
+                </form>
+               
             </div>
         </div>
         <div class="category-right">
-          
-                @foreach (var item in Model)
+
+            @foreach (var item in product)
                 {
                     <div class="wrapper-product">
                         <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@item.Id" >
@@ -34,8 +40,8 @@
                                 <img width="100%" height="100%" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))"/>
                             </div>
 
-                            <span class="product-name">@item.producdName </span>
-                            <span class="product-price">@item.producdPrice</span>
+                            <span style="font-weight: 600" class="product-name">@item.producdName </span>
+                            <span class="product-price">@string.Format("{0:#,0}",@item.producdPrice)đ</span>
                             <span class="product-sold">Đã bán: @item.sold sản phẩm</span>
                             @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                         </a>

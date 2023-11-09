@@ -24,7 +24,7 @@ namespace KaiserStore.Controllers
             var total = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
@@ -37,6 +37,8 @@ namespace KaiserStore.Controllers
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
 
             }
+            var slide = await _context.slides.Where(s=> s.status == "active").ToListAsync();
+            ViewData["slide"] = slide;
             return View(product);
         }
         public async Task<IActionResult> LogOut()
@@ -48,13 +50,13 @@ namespace KaiserStore.Controllers
             
         }
         [Route("/Category/{id}")]
-        public async Task<IActionResult> Category(string id)
+        public async Task<IActionResult> Category(string id, int sPrice, int ePrice)
         {
             var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
             var total = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
             if (HttpContext.Session.GetString("UserSession") != null)
@@ -66,9 +68,32 @@ namespace KaiserStore.Controllers
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
             var nameCategory = _context.categorys.Find(id);
-            var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p=> p.status =="active").ToList();
-            return View(product);
+            if(sPrice != 0 && ePrice == 0)
+            {
+                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.producdPrice >= sPrice).Where(p => p.status == "active").ToList();
+                ViewData["product"] = product;
+            }
+            else if(sPrice == 0 && ePrice != 0)
+            {
+                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
+                ViewData["product"] = product;
+            }
+            else if (sPrice == 0 && ePrice == 0)
+            {
+                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.status == "active").ToList();
+                ViewData["product"] = product;
+            }
+            else
+            {
+                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.producdPrice >= sPrice).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
+                ViewData["product"] = product;
+            }
+          
+            return View();
         }
+       
+
+
         [Route("/Product/{id}")]
         public  IActionResult Product(int id)
         {
@@ -76,7 +101,7 @@ namespace KaiserStore.Controllers
             var total = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
             if (HttpContext.Session.GetString("UserSession") != null)
@@ -101,7 +126,7 @@ namespace KaiserStore.Controllers
             var total = 0;
             foreach (var c in cart)
             {
-                total += (cartItem.quantity * int.Parse(c.Product.producdPrice));
+                total += (c.quantity * c.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
 
@@ -118,21 +143,21 @@ namespace KaiserStore.Controllers
             ViewData["category"] = category;
 
             var flagQ = await _context.sizes.Where(s => s.ProductId == cartItem.ProductId).Where(s => s.Name == cartItem.Size).FirstOrDefaultAsync();
-         
-      
-            if (flagQ.Quantity >= cartItem.quantity && cartItem.quantity > 0 )
+
+
+            if (flagQ.Quantity >= cartItem.quantity && cartItem.quantity > 0)
             {
 
-                var cartIndex = await _context.carts.Where(p => p.UserId == cartItem.UserId).Where(p => p.ProductId == cartItem.ProductId).Where(p=>p.Size == cartItem.Size).FirstOrDefaultAsync();
+                var cartIndex = await _context.carts.Where(p => p.UserId == cartItem.UserId).Where(p => p.ProductId == cartItem.ProductId).Where(p => p.Size == cartItem.Size).FirstOrDefaultAsync();
                 if (cartIndex != null)
                 {
-                    if ( (cartItem.quantity + cartIndex.quantity) <= flagQ.Quantity) 
+                    if ((cartItem.quantity + cartIndex.quantity) <= flagQ.Quantity)
                     {
                         cartIndex.quantity += cartItem.quantity;
                         _context.SaveChanges();
                         return RedirectToAction("Home");
                     }
-                    
+
 
                 }
                 else
@@ -143,6 +168,9 @@ namespace KaiserStore.Controllers
                     return RedirectToAction("Home");
                 }
 
+            }
+            else {
+                ViewData["Error"] = "Số lượng nhập nhỏ hơn 0 hoặc lớn số lượng hiện có";
             }
 
             
@@ -170,11 +198,42 @@ namespace KaiserStore.Controllers
             var total = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
             ViewData["cart"] = cart;
             return View();
+
+        }
+        [HttpPost]
+        [Route("/Order")]
+        public async Task<IActionResult> Order(int id)
+        {
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+                ViewData["ID"] = HttpContext.Session.GetString("UserID");
+
+            }
+            else
+            {
+                return RedirectToAction("login", "accounts");
+            }
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            ViewData["category"] = category;
+            var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            var total = 0;
+            foreach (var cartItem in cart)
+            {
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
+            }
+            ViewData["cartTotal"] = total;
+            ViewData["cart"] = cart;
+
+            _context.Remove(_context.carts.Find(id));
+            _context.SaveChanges();
+
+            return RedirectToAction("Order");
 
         }
         [Route("/Payments")]
@@ -184,7 +243,7 @@ namespace KaiserStore.Controllers
             var total = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
             ViewData["cart"] = cart;
@@ -213,7 +272,7 @@ namespace KaiserStore.Controllers
             var count = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
                 count += cartItem.quantity;
             }
             ViewData["cartTotal"] = total;
@@ -285,7 +344,7 @@ namespace KaiserStore.Controllers
             var total = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
@@ -304,6 +363,61 @@ namespace KaiserStore.Controllers
             ViewData["payment"] = payment;
             return View();
         }
+        [Route("/ChangePass")]
+        public async Task<IActionResult> ChangePassAsync() 
+        {
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+                ViewData["ID"] = HttpContext.Session.GetString("UserID");
+
+            }
+            else
+            {
+                return RedirectToAction("login", "accounts");
+            }
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            ViewData["category"] = category;
+            ViewData["success"] = "";
+            return View();
+        }
+        [HttpPost]
+        [Route("/ChangePass")]
+        public async Task<IActionResult> ChangePassAsync(string oldPass, string newPass, string repeatNew)
+        {
+            ViewData["success"] = "";
+            if (HttpContext.Session.GetString("UserSession") != null)
+            {
+                ViewData["Data"] = HttpContext.Session.GetString("UserSession");
+                ViewData["ID"] = HttpContext.Session.GetString("UserID");
+
+            }
+            else
+            {
+                return RedirectToAction("login", "accounts");
+            }
+            var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
+            ViewData["category"] = category;
+            var user = _context.accounts.Find(HttpContext.Session.GetString("UserID"));
+            if(user.password == oldPass)
+            {
+                if( newPass == repeatNew)
+                {
+                    user.password = newPass;
+                    _context.SaveChanges();
+                    ViewData["success"] = "Đổi mật khẩu thành công";
+                }
+                else
+                {
+                    ViewData["error"] = "Mật khẩu mới không khớp";
+                }
+            }
+            else
+            {
+                ViewData["error"] = "Mật khẩu không khớp với mật khẩu hiện tại";
+            }
+            return View();
+        }
         [Route("/paymentHistory/ListProduct")]
         public async Task<IActionResult> ListProduct(int id)
         {
@@ -311,7 +425,7 @@ namespace KaiserStore.Controllers
             var total = 0;
             foreach (var cartItem in cart)
             {
-                total += (cartItem.quantity * int.Parse(cartItem.Product.producdPrice));
+                total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();

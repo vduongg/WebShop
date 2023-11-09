@@ -15,6 +15,7 @@ namespace KaiserStore.Data
         public DbSet<Order> orders { get; set; }
         public DbSet<Cart> carts { get; set; }
         public DbSet<ImportDetails> importDetails { get; set; }
+        public DbSet<Slide> slides { get; set; }
 
     }
 }

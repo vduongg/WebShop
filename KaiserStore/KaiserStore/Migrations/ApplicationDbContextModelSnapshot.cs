@@ -234,10 +234,8 @@ namespace KaiserStore.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("producdPrice")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("producdPrice")
+                        .HasColumnType("int");
 
                     b.Property<int>("sold")
                         .HasColumnType("int");
@@ -276,6 +274,30 @@ namespace KaiserStore.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("sizes");
+                });
+
+            modelBuilder.Entity("KaiserStore.Models.Slide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("dataimage")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("slides");
                 });
 
             modelBuilder.Entity("KaiserStore.Models.Cart", b =>

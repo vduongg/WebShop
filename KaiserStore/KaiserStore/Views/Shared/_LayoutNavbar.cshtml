@@ -20,9 +20,10 @@
                     <span>Kaiser Store</span>
                 </a>
 
-                <div class="search">
-                    <input class="search-input" placeholder="Tìm kiếm sản phẩm" />
-                </div>
+                <form class="search" asp-controller="Search" asp-action="Search" method="get">
+                    <input class="search-input" placeholder="Tìm kiếm sản phẩm" name="search" />
+              
+                </form>
                
                 @if (ViewData["Data"] == null)
                 {
@@ -48,12 +49,13 @@
                             <span>/</span>
                             <span>@ViewData["cartTotal"]đ</span>
                         </a>
-                        <a href="/paymentHistory">
-                            <i class="fa-solid fa-clock fa-xl"></i>
-                            <span>Lịch sử</span>
-                            </a>
+                      
                     </div>
-                    <span style="font-size: 14px; padding-right: 10px">Xin chào @ViewData["Data"]</span>
+                    <span style="font-size: 14px; padding-right: 10px">
+                        Xin chào @ViewData["Data"]   <a href="/paymentHistory">
+                            <i style="color: black" class="fa-solid fa-user fa-xl"></i>
+                        </a>
+                    </span>
                     <a  style="font-size: 16px; font-weight: 600; border-bottom: 1px solid; color: black;" class="LogOut" asp-action="LogOut"> Đăng xuất</a>
                 }
 

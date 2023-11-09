@@ -126,14 +126,30 @@
                         </a>
                     </div>
                 }
-            
-                <div class="side__link">
-                    <a href="#">
+                @if (ViewData["page"] == "slide")
+                {
 
-                        <img src="~/image/doanhthu.svg" />
-                        <span id="title">Doanh thu</span>
-                    </a>
-                </div>
+
+                    <div class="side__link active">
+                        <a href="~/Admin/Slide">
+
+                            <i class="fa-solid fa-sliders"></i>
+                            <span id="title">Slide</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="side__link">
+                        <a href="~/Admin/Slide">
+
+                            <i class="fa-solid fa-sliders"></i>
+                            <span id="title">Slide</span>
+                        </a>
+                    </div>
+                }
+            
             </div>
             <div class="menu-bot">
                 <div class="side__link">

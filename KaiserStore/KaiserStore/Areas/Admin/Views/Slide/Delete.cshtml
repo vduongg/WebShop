@@ -1,0 +1,18 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model KaiserStore.Models.GetStatus
+
+@{
+    ViewData["page"] = "slide";
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<div style="width: 100%; height: 90vh; display: flex; justify-content: center; align-items: center;">
+
+    <form style="display: flex; flex-direction: column; align-items: center;" asp-action="Delete" method="post">
+        <h3>Bạn có chắc chắn muốn xóa ảnh slide không?</h3>
+        <input type="hidden" value="disable" asp-for="status" />
+        <button type="submit" style="padding: 10px; margin: 10px;">Xóa slide</button>
+        <span style="color: red;">@ViewData["Status"]</span>
+    </form>
+</div>

@@ -11,8 +11,7 @@ namespace KaiserStore.Models
         public int Id { get; set; }
         [MaxLength(100)]
         public string producdName { get; set; }
-        [MaxLength(100)]
-        public string producdPrice { get; set; }
+        public int producdPrice { get; set; }
         [MaxLength]
         public byte[]? dataimage { get; set; }
         public string status { get; set; }

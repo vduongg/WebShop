@@ -15,8 +15,25 @@
     padding-right: 50px;
 }
 .product-info {
+    width: 200px;
     display: flex;
     flex-direction: column;
+}
+.product-info select{
+     padding: 5px 0 5px 5px;
+    margin-bottom: 10px;
+}
+.product-info button{
+     padding: 5px 0 5px 5px;
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+}
+.product-info input{
+    padding: 5px 0 5px 5px;
+    margin-bottom: 10px;
+    
 }
 .product-info span{
     margin-bottom: 20px;

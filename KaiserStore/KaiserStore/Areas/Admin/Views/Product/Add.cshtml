@@ -16,6 +16,30 @@
 
 <html>
 <head>
+    <style>
+        form input{
+            margin-bottom: 20px;
+            padding: 5px 0 5px 5px;
+        }
+
+        form select {
+            margin-bottom: 20px;
+            padding: 5px 0 5px 5px;
+        }
+        form textarea {
+            margin-bottom: 20px;
+            padding: 5px 5px 5px 5px;
+        }
+        form button {
+            color: white;
+            background-color: black;
+            padding: 10px 20px 10px 20px;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+
+      
+    </style>
     
 </head>
 <body>
@@ -31,7 +55,7 @@
 
                 }
             </select>
-            <input asp-for="describe" />
+            <textarea cols="50" rows="20" asp-for="describe"> </textarea>
             <input hidden value="active" asp-for="status" />
             <input style="margin-bottom: 10px" type="file" asp-for="file" />
             <button style="margin-bottom: 10px" type="submit">Upload</button>

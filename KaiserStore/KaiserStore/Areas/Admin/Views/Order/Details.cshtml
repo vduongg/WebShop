@@ -82,7 +82,7 @@
                                 <td><h6>@item.Product.producdName</h6></td>
                                 <td>@item.Size </td>
                                 <td><span>@item.quantity</span></td>
-                                <td>@(int.Parse(item.Product.producdPrice) * item.quantity)</td>
+                                <td>@(item.Product.producdPrice * item.quantity)</td>
                             <tr>
                         </tbody>
                     }

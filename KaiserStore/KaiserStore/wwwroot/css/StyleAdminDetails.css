@@ -6,7 +6,6 @@
 
 .paymentForm {
     position: relative;
-    margin-left: 200px;
 }
 
 .name, .phone, .email, .address, .city, .datetime, .status {
@@ -54,10 +53,6 @@
 }
 
 .payment-left {
-    width: 50%;
-}
-
-.payment-right {
     width: 40%;
 }
 
@@ -72,7 +67,7 @@ table {
 }
 
 thead th {
-    font-size: 10px;
+    font-size: 15px;
     position: sticky;
     top: 0;
 }

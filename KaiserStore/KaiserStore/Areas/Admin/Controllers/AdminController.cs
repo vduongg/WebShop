@@ -57,7 +57,7 @@ namespace KaiserStore.Areas.Admin.Controllers
             var dt = 0;
             foreach (var item in sales)
             {
-                dt += item.quantity * int.Parse(item.Product.producdPrice);
+                dt += item.quantity * item.Product.producdPrice;
             }
             homeItem2.name = "Doanh thu";
             homeItem2.icon = "fa-solid fa-money-check-dollar";

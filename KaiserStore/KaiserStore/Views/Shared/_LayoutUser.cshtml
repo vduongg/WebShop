@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        .wrap-user {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .user {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 250px;
+            height: 200px;
+            border: 1px solid;
+            border-radius: 20px;
+            margin-top: 50px;
+            margin-right: 50px;
+        }
+
+            .user span {
+                width: 100%;
+                font-size: 28px;
+                font-weight: 600;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+
+            .user a {
+                padding-bottom: 5px;
+                width: 100%;
+                display: flex;
+                color: black;
+                align-items: center;
+                justify-content: center;
+            }
+
+        i {
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap-user">
+        <div class="user">
+            <span><i class="fa-solid fa-user"></i>@ViewData["Data"]</span>
+            <a href="/paymentHistory"><i class="fa-solid fa-clock"></i>Lịch sử mua hàng</a>
+            <a href="/changePass"><i class="fa-solid fa-key"></i>Đổi mật khẩu</a>
+
+        </div>
+        @RenderBody()
+    </div>
+</body>
+</html>

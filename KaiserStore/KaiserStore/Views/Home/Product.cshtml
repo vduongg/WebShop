@@ -28,7 +28,7 @@
             <span class="product-name">@product.producdName </span>
             <input hidden value="@ViewData["ID"]" asp-for="UserId"/>
             <input hidden value="@product.Id" asp-for="ProductId"/>
-            <span class="product-price">Giá: @product.producdPrice</span>
+            <span class="product-price">Giá: @string.Format("{0:#,0}",@product.producdPrice)</span>
             @if(ListSize.Count() > 0)
             {
                 <select asp-for="Size">
@@ -47,12 +47,16 @@
             }
             else
             {
-                <span>Sold out</span>
+                <span style="padding: 10px; background-color: darkred; color: white;display: flex;justify-content: center;">Sold out</span>
             }
             
            
             <span class="product-sold">Đã bán: @product.sold sản phẩm</span>
-          
+            @if (ViewData["Error"] != "")
+            {
+                <span style="margin-top: 10px; color: darkred; font-weight: 600;">@ViewData["Error"]</span>
+            }
+           
            
         </form>
         @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@

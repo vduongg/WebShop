@@ -1,0 +1,81 @@
+﻿@{
+    List<Payment> payment = ViewData["payment"] != null ? (List<Payment>)ViewData["payment"] : null;
+
+
+}
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleOrder.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <style>
+        .ChangePass {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+      
+        form input{
+            margin: 5px;
+            padding: 5px 0 5px 5px;
+        }
+        form button{
+            color: white;
+            background-color: black;
+            padding: 10px 20px 10px 20px;
+            margin-bottom: 50px;
+            margin-top: 50px;
+           
+        }
+
+       
+
+    </style>
+</head>
+<body>
+    @if (ViewData["success"] != "")
+    {
+        <span style="color: green; font-weight: 600; display: flex; align-items: center; justify-content: center;">@ViewData["success"]</span>
+    }
+    else
+    {
+        <form class="ChangePass" asp-action="ChangePass" method="post">
+            <h3>Đổi mật khẩu</h3>
+
+            <input type="password" placeholder="Nhập mật khẩu cũ" name="oldPass" />
+
+            <input type="password" placeholder="Nhập mật khẩu mới" name="newPass" />
+
+            <input type="password" placeholder="Nhập lại mật khẩu mới" name="repeatNew" />
+            <button type="submit">Đổi mật khẩu</button>
+
+            @if (ViewData["error"] != "")
+            {
+                <span style="color: darkred; font-weight: 600"> @ViewData["error"]</span>
+            }
+        </form>
+        
+    }
+   
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

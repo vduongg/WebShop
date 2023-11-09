@@ -1,0 +1,97 @@
+﻿@model List<KaiserStore.Models.Slide>;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["page"] = "slide";
+    ViewData["Title"] = "Slide";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleAdminCategory.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="category">
+        <div class="category-header">
+            <h3>
+                Slide
+            </h3>
+            <div class="right">
+
+                <form class="add-category" asp-action="Add">
+                    <button type="submit"> Thêm slide</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="category-body">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>STT</th>
+                        <th>TÊN SLIDE</th>
+                        <th>ẢNH SLIDE</th>
+                        <th>TÌNH TRẠNG</th>
+                        <th>HÀNH ĐỘNG</th>
+                      
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (var i = Model.Count() - 1; i >= 0; i--)
+                    {
+                        <tr>
+
+                            <td>@(Model.Count() - i)</td>
+                            <td>@Model[i].name</td>
+                          
+                            <td>
+                                <div style="display: flex;">
+                                    <img width="300" height="100" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(Model[i].dataimage))" />
+                                </div>
+
+                            </td>
+                            <td>@Model[i].status</td>
+                            <td>
+                                @if (Model[i].status == "active")
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        
+                                        <a asp-route-id="@Model[i].Id" asp-action="Delete"><i class="fa-solid fa-trash-can" style="color: black;"></i></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        <a asp-route-id="@Model[i].Id" asp-action="Restore"><i class="fa-solid fa-clock-rotate-left" style="color: black;"></i></a>
+
+                                    </div>
+                                }
+
+
+                            </td>
+                        </tr>
+
+
+
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script src="~/js/AdminCategory.js"></script>
+</body>
+</html>
+

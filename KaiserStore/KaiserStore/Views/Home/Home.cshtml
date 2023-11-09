@@ -3,9 +3,10 @@
 @{
     List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
     List<ProductsVM> bestSell = ViewData["bestSell"] != null ? (List<ProductsVM>)ViewData["bestSell"] : null;
-}
+    List<Slide> slide = ViewData["slide"] != null ? (List<Slide>)ViewData["slide"] : null;
 }
 
+  
 @{
     ViewData["Title"] = "Kaiser Store";
     Layout = "~/Views/Shared/_LayoutNavbar.cshtml";
@@ -21,10 +22,13 @@
 <body>
         <div class="slide">
 
-             <div class="slide-items">     
-                <img class="item active" src="https://intphcm.com/data/upload/banner-thoi-trang.jpg" />
-                <img class="item" src="https://img3.thuthuatphanmem.vn/uploads/2019/10/14/banner-thoi-trang-the-thao-cho-nam_113858272.jpg" />
-                <img class="item" src="https://scontent.fhan5-2.fna.fbcdn.net/v/t1.18169-9/11220139_757219051070703_2394365749370473791_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=HnLML_acBEsAX8M260S&_nc_ht=scontent.fhan5-2.fna&oh=00_AfAikdkFd_r7QDFJEiVpSzREy8w-iz6A-Tpyv4tSD0v8mA&oe=65192162" />
+             <div class="slide-items">
+                <img class="item active" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(@slide[0].dataimage))" />
+                @for(int i = 1; i<= slide.Count() - 1; i++)
+                {
+                <img class="item active" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(@slide[i].dataimage))" />
+                }
+        
              </div>
               <div class="slide-button">
                 <div id="button-next">
@@ -66,15 +70,7 @@
                 <div class="p-title">
                     <span>Sản phẩm mới</span>
                 </div>
-               @*  <div class="p-item">
-                    <a href="#">Tất cả</a>
-                    @foreach (var item in categories)
-                    {
-                        <a href="#">@item.namecategory</a>
-                    }
-                    
-                   
-                </div> *@
+            
 
             </div>
             <div class="list-product">
@@ -93,7 +89,7 @@
                             </div>
 
                             <span class="product-name">@Model[i].producdName</span>
-                            <span class="product-price">Giá bán: @Model[i].producdPrice</span>
+                            <span class="product-price">Giá bán: @string.Format("{0:#,0}",Model[i].producdPrice)đ</span>
                             <span class="product-sold">Đã bán: @Model[i].sold sản phẩm</span>
                             @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                         </a>
@@ -115,13 +111,7 @@
                 <div class="p-title">
                     <span>Sản phẩm bán chạy</span>
                 </div>
-               @*  <div class="p-item">
-                    <a href="#">Tất cả</a>
-                    @foreach (var item in categories)
-                    {
-                        <a href="#">@item.namecategory</a>
-                    }
-                </div> *@
+            
 
             </div>
             <div class="list-product">
@@ -140,7 +130,7 @@
                             </div>
 
                             <span class="product-name">@bestSell[i].producdName</span>
-                            <span class="product-price">Giá bán: @bestSell[i].producdPrice</span>
+                            <span class="product-price">Giá bán: @string.Format("{0:#,0}",@bestSell[i].producdPrice)đ</span>
                             <span class="product-sold">Đã bán: @bestSell[i].sold sản phẩm</span>
                             @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                         </a>

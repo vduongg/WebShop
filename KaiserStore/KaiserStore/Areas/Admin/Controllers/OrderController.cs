@@ -48,7 +48,7 @@ namespace KaiserStore.Areas.Admin.Controllers
             var product = await _context.orders.Where(p => p.PaymentId == id).Include("Product").ToListAsync();
             ViewData["payment"] = payment;
             ViewData["product"] = product;
-
+            
             return RedirectToAction("ListOrder");
         }
         [Area("Admin")]
