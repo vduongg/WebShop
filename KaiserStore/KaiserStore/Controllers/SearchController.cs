@@ -30,7 +30,7 @@ namespace KaiserStore.Controllers
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
            
-            var product = _context.products.Where(a => a.producdName.Contains(search)).Where(p => p.status == "active").ToList();
+            var product = _context.products.Where(a => a.producdName.Contains(search)).Where(p => p.status == "active").Include("category").ToList();
             ViewData["product"] = product;
             return View();
         }

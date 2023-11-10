@@ -72,6 +72,7 @@ namespace KaiserStore.Areas.Admin.Controllers
                 }
                 
             }
+            ViewData["error"] = "Size này đã có sẵn";
 
             return View();
         }

@@ -39,9 +39,10 @@
 
                     }
                 </select>
-                <input placeholder="Số lượng" min="1" asp-for="quantity" />
+               
                 @if (ViewData["Data"] != null)
                 {
+                    <input placeholder="Số lượng" min="1" asp-for="quantity" />
                     <button type="submit">Thêm vào giỏ hàng</button>
                 }
             }

@@ -29,7 +29,7 @@ namespace KaiserStore.Controllers
             ViewData["cartTotal"] = total;
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            var product = _context.products.Where(p => p.status == "active").ToList();
+            var product = _context.products.Where(p => p.status == "active").Include("category").ToList();
             var bestSell = await _context.products.Where(p=> p.status == "active").OrderBy(p => p.sold).ToListAsync();
             ViewData["bestSell"] = bestSell;
             if (HttpContext.Session.GetString("UserSession") != null)
@@ -52,6 +52,10 @@ namespace KaiserStore.Controllers
         [Route("/Category/{id}")]
         public async Task<IActionResult> Category(string id, int sPrice, int ePrice)
         {
+           if( _context.categorys.Find(id).status == "disable")
+            {
+                return RedirectToAction("home", "home");
+            }
             var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
             var total = 0;
             foreach (var cartItem in cart)
@@ -95,9 +99,13 @@ namespace KaiserStore.Controllers
 
 
         [Route("/Product/{id}")]
-        public  IActionResult Product(int id)
+        public async Task<IActionResult> ProductAsync(int id)
         {
-            var cart =  _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToList();
+            if ((await _context.products.Where(p => p.Id == id).Include("category").FirstOrDefaultAsync()).category.status == "disable")
+            {
+                return RedirectToAction("home", "home");
+            }
+            var cart =  await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
             var total = 0;
             foreach (var cartItem in cart)
             {
@@ -110,11 +118,11 @@ namespace KaiserStore.Controllers
                 ViewData["ID"] = HttpContext.Session.GetString("UserID");
 
             }
-            var ListSize =  _context.sizes.Where(s => s.ProductId == id).Where(s=> s.Quantity > 0).ToList();
+            var ListSize =  await _context.sizes.Where(s => s.ProductId == id).Where(s=> s.Quantity > 0).ToListAsync();
             ViewData["ListSize"] = ListSize;
-            var category =  _context.categorys.Where(a => a.status == "active").ToList();
+            var category =  await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            var product =  _context.products.Find(id);
+            var product = await  _context.products.FindAsync(id);
             ViewData["productItem"] = product;
             return View();
         }
@@ -122,6 +130,7 @@ namespace KaiserStore.Controllers
         [Route("/Product/{id}")]
         public async Task<IActionResult> Product(Cart cartItem, int id)
         {
+           
             var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
             var total = 0;
             foreach (var c in cart)

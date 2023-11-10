@@ -13,10 +13,21 @@
         <h3>Thêm Size</h3>
         <input asp-for="Id" hidden value="0" />
         <input  asp-for="ProductId" hidden value="@ViewData["id"]"/>
-        <input style="padding: 10px; margin: 10px;" placeholder="Name" asp-for="Name" />
+        <select style="padding: 10px; margin: 10px;" asp-for="Name">
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+        </select>
         <input asp-for="Quantity" hidden value="0" />
         <button type="submit" style="padding: 10px; margin: 10px;">Thêm Size</button>
-        <span style="color: red;">@ViewData["Status"]</span>
+        @if (ViewData["error"] != "")
+        {
+            <span style="margin-top: 10px; color: red">@ViewData["error"] </span>
+        }
     </form>
+
 </div>
 
