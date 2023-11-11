@@ -191,6 +191,7 @@ namespace KaiserStore.Controllers
         [Route("/Order")]
         public async Task<IActionResult> Order()
         {
+
             if (HttpContext.Session.GetString("UserSession") != null)
             {
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
@@ -248,14 +249,29 @@ namespace KaiserStore.Controllers
         [Route("/Payments")]
         public async Task<IActionResult> Payments()
         {
+            ViewData["success"] = "";
             var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            List<Cart> cartList = new List<Cart>();
+            List<Cart> soldOut = new List<Cart>();
+            foreach (var item in cart)
+            {
+                if (item.quantity <= (await _context.sizes.Where(s => s.ProductId == item.ProductId).Where(s => s.Name == item.Size).FirstOrDefaultAsync()).Quantity)
+                {
+                    cartList.Add(item);
+                }
+                else
+                {
+                    soldOut.Add(item);
+                }
+            }
             var total = 0;
-            foreach (var cartItem in cart)
+            foreach (var cartItem in cartList)
             {
                 total += (cartItem.quantity * cartItem.Product.producdPrice);
             }
             ViewData["cartTotal"] = total;
-            ViewData["cart"] = cart;
+            ViewData["cart"] = cartList;
+            ViewData["soldOut"] = soldOut;
 
             if (HttpContext.Session.GetString("UserSession") != null)
             {
@@ -275,8 +291,24 @@ namespace KaiserStore.Controllers
         [Route("/Payments")]
         public async Task<IActionResult> Payments(Payment payment)
         {
+            ViewData["success"] = "";
             Order order = new Order();
             var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
+            List<Cart> cartList = new List<Cart>();
+            List<Cart> soldOut = new List<Cart>();
+            foreach(var item in cart)
+            {
+                if(item.quantity <= (await _context.sizes.Where(s=> s.ProductId == item.ProductId).Where(s=> s.Name == item.Size).FirstOrDefaultAsync()).Quantity)
+                {
+                    cartList.Add(item);
+                }
+                else
+                {
+                    soldOut.Add(item);
+                }
+            }
+
+
             var total = 0;
             var count = 0;
             foreach (var cartItem in cart)
@@ -285,7 +317,8 @@ namespace KaiserStore.Controllers
                 count += cartItem.quantity;
             }
             ViewData["cartTotal"] = total;
-            ViewData["cart"] = cart;
+            ViewData["cart"] = cartList;
+            ViewData["soldOut"] = soldOut;
 
             if (HttpContext.Session.GetString("UserSession") != null)
             {
@@ -299,7 +332,7 @@ namespace KaiserStore.Controllers
             }
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            if(ModelState.IsValid)
+            if(ModelState.IsValid && cartList.Count() > 0)
             {
                 payment.PaymentId = 0;
                 payment.Total = count;
@@ -337,10 +370,10 @@ namespace KaiserStore.Controllers
 
                 }
 
-                
-                
-                return RedirectToAction("home");
+                ViewData["success"] = "Bạn đã đặt hàng thành công";
+                return View();
             }
+          
           
 
 
