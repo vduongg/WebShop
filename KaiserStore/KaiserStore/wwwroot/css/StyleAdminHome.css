@@ -4,7 +4,7 @@
 }
 .wrap-box {
     display: grid;
-    width: 100%;
+    width: 90%;
     height: 100%;
     margin-left: 100px;
     margin-right: 100px;
@@ -33,4 +33,13 @@
     color: white;
     padding-left: 50px;
     padding-right: 50px;
+}
+td {
+    text-align: center;
+}
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    color: white;
 }

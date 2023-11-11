@@ -160,7 +160,7 @@ namespace KaiserStore.Controllers
             ViewData["ListSize"] = ListSize;
             var category =  await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            var product = await  _context.products.FindAsync(id);
+            var product = await _context.products.Include("ProductType").Where(p => p.Id == id).FirstOrDefaultAsync();
             ViewData["productItem"] = product;
             return View();
         }
@@ -182,7 +182,7 @@ namespace KaiserStore.Controllers
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
                 ViewData["ID"] = HttpContext.Session.GetString("UserID");
             }
-            var product = await _context.products.FindAsync(id);
+            var product = await _context.products.Include("ProductType").Where(p=> p.Id == id).FirstOrDefaultAsync();
             ViewData["productItem"] = product;
             var ListSize = await   _context.sizes.Where(s => s.ProductId == id).Where(s=> s.Quantity > 0).ToListAsync();
             ViewData["ListSize"] = ListSize;
@@ -203,6 +203,10 @@ namespace KaiserStore.Controllers
                         cartIndex.quantity += cartItem.quantity;
                         _context.SaveChanges();
                         return RedirectToAction("Home");
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "Vượt quá số lượng hiện có";
                     }
 
 

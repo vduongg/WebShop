@@ -2,6 +2,7 @@
 @{
 
     List<KaiserStore.Models.HomeItem> HomeItem = ViewData["HomeItem"] != null ? (List<KaiserStore.Models.HomeItem>)ViewData["HomeItem"] : null;
+    List<KaiserStore.Models.statisticUser> user = ViewData["user"] != null ? (List<KaiserStore.Models.statisticUser>)ViewData["user"] : null;
 }
 
 
@@ -21,34 +22,68 @@
     <link rel="stylesheet" href="~/css/StyleAdminHome.css" />
 </head>
 <body>
-    <div class="wrap-box">
-       
-        @foreach(var item in HomeItem)
-        {
-            <div class="box" style="background-color: @item.color;">
-                
-                
+    <div>
+        <div class="wrap-box">
+
+            @foreach (var item in HomeItem)
+            {
+                <div class="box" style="background-color: @item.color;">
+
+
                     <div class="icon">
                         <i class="@item.icon"></i>
                     </div>
                     <div class="title">
                         <label>@item.name:</label>
-                    <label>@string.Format("{0:#,0}",@item.value)</label>
+                        <label>@string.Format("{0:#,0}",@item.value)</label>
                     </div>
-                
-            </div>
 
-        }
-       
-        
-    
+                </div>
+
+            }
+
+
+
+        </div>
+        <h3>Thống kê người dùng</h3>
+        <table style="width: 100%;background-color: gainsboro;" class="table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>USERNAME</th>
+                    <th>HỌ VÀ TÊN</th>
+                    <th>TỔNG SỐ LƯỢNG</th>
+                    <th>TỔNG THÀNH TIỀN</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+                @for (int i = 0; i < user.Count(); i++)
+                {
+                    <tr>
+
+                        <td>@(i + 1)</td>
+                        <td>@user[i].Username </td>
+                        <td>@user[i].Name</td>
+                        <td>@user[i].TotalPro</td>
+                        <td>@user[i].TotalPrice</td>
+
+                    </tr>
+
+
+
+
+                }
+
+
+            </tbody>
+        </table>
+
     </div>
    
-    
-
- 
-    
-
+  
    
 </body>
 </html>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace KaiserStore.Areas.Admin.Controllers
 {
@@ -66,6 +67,24 @@ namespace KaiserStore.Areas.Admin.Controllers
             ListHomeItems.Add(homeItem2);
 
             ViewData["HomeItem"] = ListHomeItems;
+            List<statisticUser> userList = new List<statisticUser>();
+            var user = _context.payments.GroupBy(p=> p.UserId).Select(g=> new
+            {
+                UserID = g.Key,
+                SumQuantity = g.Sum(p=> p.Total),
+                SumPrice = g.Sum(p => p.TotalPrice)
+            }).OrderByDescending(g=> g.SumPrice).ToList();
+            foreach (var item in user)
+            {
+                statisticUser statisticUser = new statisticUser();
+                statisticUser.Username = item.UserID;
+                statisticUser.Name = _context.accounts.Find(item.UserID).name;
+                statisticUser.TotalPro = (int)item.SumQuantity;
+                statisticUser.TotalPrice = item.SumPrice;
+                userList.Add(statisticUser);
+            }
+
+            ViewData["user"] = userList;
             return View();
           
         }
