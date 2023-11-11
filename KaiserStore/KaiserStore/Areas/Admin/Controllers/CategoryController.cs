@@ -130,11 +130,20 @@ namespace KaiserStore.Areas.Admin.Controllers
             //}
             if (ModelState.IsValid)
             {
-                {
-                    _context.Update(categoryVM);
-                    await _context.SaveChangesAsync();
+                
+                _context.Update(categoryVM);
+                await _context.SaveChangesAsync();
 
+                var type = await _context.productTypes.Where(p => p.categoryId == categoryVM.id).ToListAsync();
+                foreach (var item in type)
+                {
+                    item.status = "disable";
+                    _context.SaveChanges();
+                    
                 }
+
+
+
                 return RedirectToAction("Category");
             }
             return View();
@@ -152,11 +161,18 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Area("Admin")]
         [Route("/Admin/Category/Restore/{id}")]
 
-        public IActionResult Restore(GetStatus get, string id)
+        public async Task<IActionResult> Restore(GetStatus get, string id)
         {
             var category = _context.categorys.Find(id);
             category.status = get.status;
             _context.SaveChanges();
+            var type = await _context.productTypes.Where(p => p.categoryId == id).ToListAsync();
+            foreach (var item in type)
+            {
+                item.status = "active";
+                _context.SaveChanges();
+
+            }
             return RedirectToAction("Category");
         }
 

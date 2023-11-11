@@ -21,25 +21,28 @@
 </head>
 <body>
         <div class="slide">
-
-             <div class="slide-items">
+        @if(slide.Count() > 0)
+        {
+            <div class="slide-items">
                 <img width="100%" class="item active" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(@slide[0].dataimage))" />
-                @for(int i = 1; i<= slide.Count() - 1; i++)
+                @for (int i = 1; i <= slide.Count() - 1; i++)
                 {
                     <img class="item" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(@slide[i].dataimage))" />
                 }
-        
-             </div>
-              <div class="slide-button">
+
+            </div>
+            <div class="slide-button">
                 <div id="button-next">
-                   
+
                     <img src="~/image/button-next.svg" width="60px" height="60px" />
                 </div>
 
                 <div id="button-back">
                     <img src="~/image/button-back.svg" width="60px" height="60px" />
                 </div>
-             </div>
+            </div>
+        }
+            
         </div>
         <div class="policy">
             <div class="policy-item">
@@ -85,7 +88,7 @@
                     @for (int i = Model.Count() - 1; i >= max; i--)
                     {
                         
-                        if(Model[i].category.status == "active")
+                        if(Model[i].ProductType.status == "active")
                         {
                             <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@Model[i].Id" class="product">
                                 <div class="product-img">
@@ -128,7 +131,7 @@
                         color: red;
                         ">Hiện tại không có sản phẩm nào</span>
                 }
-                }
+                
 
             </div>
             
@@ -153,7 +156,7 @@
                     }
                     @for (int i = bestSell.Count() - 1; i >= max; i--)
                     {
-                        if(bestSell[i].category.status == "active")
+                        if(bestSell[i].ProductType.status == "active")
                         {
                             <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@bestSell[i].Id" class="product">
                             <div class="product-img">

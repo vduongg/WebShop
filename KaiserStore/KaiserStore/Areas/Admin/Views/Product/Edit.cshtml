@@ -3,12 +3,12 @@
 
 @using KaiserStore.Models;
 @{
-    List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+    List<ProductType> productType = ViewData["productType"] != null ? (List<ProductType>)ViewData["productType"] : null;
 }
 
 @{
     ViewData["page"] = "product";
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Sửa sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }
 <!DOCTYPE html>
@@ -83,11 +83,11 @@
             <div>
 
                 <span>Loại sản phẩm</span>
-                <select asp-for="categoryId">
-                    <option>@Model.categoryId</option>
-                    @foreach (var item in categories)
+                <select asp-for="ProductTypeId">
+                   
+                    @foreach (var item in productType)
                     {
-                        <option label="@item.namecategory">@item.id</option>
+                        <option label="@item.Name">@item.Id</option>
                        
                     }
                 </select>

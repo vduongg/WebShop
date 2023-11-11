@@ -80,6 +80,27 @@
                         </a>
                     </div>
                 }
+                @if (ViewData["page"] == "productType")
+                {
+                    <div class="side__link active">
+                        <a href="~/Admin/ProductType">
+
+                            <i class="fa-solid fa-wand-magic-sparkles fa-xl"></i>
+                            <span id="title">Loại sản phẩm</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="side__link">
+                        <a href="~/Admin/ProductType">
+
+                            <i class="fa-solid fa-wand-magic-sparkles fa-xl"></i>
+                            <span id="title">Loại sản phẩm</span>
+                        </a>
+                    </div>
+                }
+
                 @if (ViewData["page"] == "listorder")
                 {
 
@@ -149,7 +170,7 @@
                         </a>
                     </div>
                 }
-            
+              
             </div>
             <div class="menu-bot">
                 <div class="side__link">

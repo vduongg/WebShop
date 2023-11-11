@@ -210,6 +210,33 @@ namespace KaiserStore.Migrations
                     b.ToTable("payments");
                 });
 
+            modelBuilder.Entity("KaiserStore.Models.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("categoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("categoryId");
+
+                    b.ToTable("productTypes");
+                });
+
             modelBuilder.Entity("KaiserStore.Models.ProductsVM", b =>
                 {
                     b.Property<int>("Id")
@@ -218,9 +245,8 @@ namespace KaiserStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("categoryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("dataimage")
                         .HasColumnType("varbinary(max)");
@@ -246,7 +272,7 @@ namespace KaiserStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("categoryId");
+                    b.HasIndex("ProductTypeId");
 
                     b.ToTable("products");
                 });
@@ -349,15 +375,26 @@ namespace KaiserStore.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KaiserStore.Models.ProductsVM", b =>
+            modelBuilder.Entity("KaiserStore.Models.ProductType", b =>
                 {
                     b.HasOne("KaiserStore.Models.CategoryVM", "category")
-                        .WithMany("products")
+                        .WithMany("productTypes")
                         .HasForeignKey("categoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("category");
+                });
+
+            modelBuilder.Entity("KaiserStore.Models.ProductsVM", b =>
+                {
+                    b.HasOne("KaiserStore.Models.ProductType", "ProductType")
+                        .WithMany("products")
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductType");
                 });
 
             modelBuilder.Entity("KaiserStore.Models.SizeItem", b =>
@@ -380,12 +417,17 @@ namespace KaiserStore.Migrations
 
             modelBuilder.Entity("KaiserStore.Models.CategoryVM", b =>
                 {
-                    b.Navigation("products");
+                    b.Navigation("productTypes");
                 });
 
             modelBuilder.Entity("KaiserStore.Models.Payment", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("KaiserStore.Models.ProductType", b =>
+                {
+                    b.Navigation("products");
                 });
 
             modelBuilder.Entity("KaiserStore.Models.ProductsVM", b =>

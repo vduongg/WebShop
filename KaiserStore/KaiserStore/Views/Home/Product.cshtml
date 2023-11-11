@@ -26,6 +26,7 @@
      
         <form method="post" asp-route-id="@product.Id" class="product-info">
             <span class="product-name">@product.producdName </span>
+            <span>Loại sản phẩm: @product.ProductType.Name</span>
             <input hidden value="@ViewData["ID"]" asp-for="UserId"/>
             <input hidden value="@product.Id" asp-for="ProductId"/>
             <span class="product-price">Giá: @string.Format("{0:#,0}",@product.producdPrice)</span>

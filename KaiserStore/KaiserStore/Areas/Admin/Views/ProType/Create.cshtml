@@ -1,0 +1,31 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model KaiserStore.Models.ProductType
+@{
+    List<KaiserStore.Models.CategoryVM> categories = ViewData["category"] != null ? (List<KaiserStore.Models.CategoryVM>)ViewData["category"] : null;
+}
+
+@{
+    ViewData["page"] = "productType";
+    ViewData["Title"] = "Thêm loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<div style="width: 100%; height: 90vh; display: flex; justify-content: center; align-items: center;">
+
+    <form style="display: flex; flex-direction: column; align-items: center;" asp-action="Create" method="post">
+        <h3 >Thêm loại sản phẩm</h3>
+        <input style="padding: 10px; margin: 10px;" placeholder="Tên loại sản phẩm"  asp-for="Name"/>
+        <span asp-validation-for="Name"></span>
+        <select asp-for="categoryId">
+            @foreach(var item in categories)
+            {
+                <option label="@item.namecategory">@item.id</option>
+            }
+            
+        </select>
+        <input type="hidden" value="active" asp-for="status" />
+        <button type="submit" style="padding: 10px; margin: 10px;" >Thêm danh mục</button>
+        <span style="color: red;">@ViewData["Status"]</span>
+    </form>
+</div>
+

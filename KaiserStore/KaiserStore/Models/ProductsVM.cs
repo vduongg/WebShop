@@ -16,8 +16,8 @@ namespace KaiserStore.Models
         public byte[]? dataimage { get; set; }
         public string status { get; set; }
         public List<SizeItem>? sizes { get; set; }
-        public string categoryId { get; set; }
-        public CategoryVM? category { get; set; }
+        public int ProductTypeId { get; set; }
+        public ProductType? ProductType { get; set; }
         public string describe { get; set; }
         public int sold { get; set; } = 0;
         [NotMapped]

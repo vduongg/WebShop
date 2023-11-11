@@ -1,0 +1,92 @@
+﻿@model List<KaiserStore.Models.ProductType>;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["page"] = "productType";
+    ViewData["Title"] = "Loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link rel="stylesheet" href="~/css/StyleAdminCategory.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="category">
+        <div class="category-header">
+            <h3>
+                Loại sản phẩm
+            </h3>
+            <div class="right">
+
+                <form class="add-category" asp-action="Create">
+                    <button type="submit"> Thêm loại sản phẩm</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="category-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>TÊN LOẠI SẢN PHẨM</th>
+                        <th>DANH MỤC CHA</th>
+                        <th>TRẠNG THÁI</th>
+                        <th>HÀNH ĐỘNG</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = Model.Count() - 1; i >= 0 ; i--)
+                    {
+                        <tr>
+
+                            <td>@(Model.Count() - i)</td>
+                            <td>@Model[i].Name</td>
+                            <td>@Model[i].categoryId</td>
+                            <td>@Model[i].status</td>
+                            <td>
+
+                                @if (Model[i].status == "active")
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        <a asp-route-id="@Model[i].Id" asp-action="Edit"><i class="fa-solid fa-pen-to-square" style="color: black;"></i></a>
+                                        <a asp-route-id="@Model[i].Id" asp-action="Delete"><i class="fa-solid fa-trash-can" style="color: black;"></i></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="display: flex; justify-content: center">
+                                        <a asp-route-id="@Model[i].Id" asp-action="Restore"><i class="fa-solid fa-clock-rotate-left" style="color: black;"></i></a>
+
+                                    </div>
+                                }
+                            </td>
+
+                        </tr>
+
+
+
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script src="~/js/AdminCategory.js"></script>
+</body>
+</html>
+
+
+

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace KaiserStore.Areas.Admin.Controllers
 {
@@ -21,7 +21,7 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Product()
         {
-            var product = _context.products.ToList();
+            var product = _context.products.Include("ProductType").ToList();
             return View(product);
         }
 
@@ -41,8 +41,8 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Add(ProductsVM product)
         {
-            var category = _context.categorys.ToList();
-            ViewData["category"] = category;
+            var productType = _context.productTypes.ToList();
+            ViewData["productType"] = productType;
             var file = product.file;
             if (file != null)
             {
@@ -72,8 +72,8 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public  IActionResult Edit(int id)
         {
-            var category = _context.categorys.ToList();
-            ViewData["category"] = category;
+            var productType = _context.productTypes.ToList();
+            ViewData["productType"] = productType;
             var productsVM =  _context.products.Find(id);
             return View(productsVM);
             
@@ -84,7 +84,9 @@ namespace KaiserStore.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(ProductsVM productVM)
         {
-          
+
+            var productType = _context.productTypes.ToList();
+            ViewData["productType"] = productType;
             var file = productVM.file;
             if (file != null)
             {

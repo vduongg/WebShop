@@ -29,7 +29,7 @@ namespace KaiserStore.Controllers
             ViewData["cartTotal"] = total;
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            var product = _context.products.Where(p => p.status == "active").Include("category").ToList();
+            var product = _context.products.Where(p => p.status == "active").Include("ProductType").ToList();
             var bestSell = await _context.products.Where(p=> p.status == "active").OrderBy(p => p.sold).ToListAsync();
             ViewData["bestSell"] = bestSell;
             if (HttpContext.Session.GetString("UserSession") != null)
@@ -37,6 +37,7 @@ namespace KaiserStore.Controllers
                 ViewData["Data"] = HttpContext.Session.GetString("UserSession");
 
             }
+        
             var slide = await _context.slides.Where(s=> s.status == "active").ToListAsync();
             ViewData["slide"] = slide;
             return View(product);
@@ -50,12 +51,13 @@ namespace KaiserStore.Controllers
             
         }
         [Route("/Category/{id}")]
-        public async Task<IActionResult> Category(string id, int sPrice, int ePrice)
+        public async Task<IActionResult> Category(string id, int sPrice, int ePrice, int Type)
         {
            if( _context.categorys.Find(id).status == "disable")
             {
                 return RedirectToAction("home", "home");
             }
+            ViewData["proType"] = await _context.productTypes.Where(p => p.categoryId == id).ToListAsync();
             var cart = await _context.carts.Where(c => c.UserId == HttpContext.Session.GetString("UserID")).Include("Product").ToListAsync();
             var total = 0;
             foreach (var cartItem in cart)
@@ -71,26 +73,62 @@ namespace KaiserStore.Controllers
             }
             var category = await _context.categorys.Where(a => a.status == "active").ToListAsync();
             ViewData["category"] = category;
-            var nameCategory = _context.categorys.Find(id);
+   
             if(sPrice != 0 && ePrice == 0)
             {
-                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.producdPrice >= sPrice).Where(p => p.status == "active").ToList();
-                ViewData["product"] = product;
+                if(Type == 0 )
+                {
+                    var product = _context.products.Where(p => p.ProductType.categoryId == id).Where(p => p.producdPrice >= sPrice).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+                else
+                {
+                    var product = _context.products.Where(p => p.ProductTypeId == Type).Where(p => p.producdPrice >= sPrice).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+             
             }
             else if(sPrice == 0 && ePrice != 0)
             {
-                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
-                ViewData["product"] = product;
+                if(Type == 0)
+                {
+                    var product = _context.products.Where(p => p.ProductType.categoryId == id).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+                else
+                {
+                    var product = _context.products.Where(p => p.ProductTypeId == Type).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+               
             }
             else if (sPrice == 0 && ePrice == 0)
             {
-                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.status == "active").ToList();
-                ViewData["product"] = product;
+                if(Type == 0 )
+                {
+                    var product = _context.products.Where(p => p.ProductType.categoryId == id).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+                else
+                {
+                    var product = _context.products.Where(p => p.ProductTypeId == Type).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+               
             }
             else
             {
-                var product = _context.products.Where(a => a.categoryId == nameCategory.id).Where(p => p.producdPrice >= sPrice).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
-                ViewData["product"] = product;
+                if(Type == 0)
+                {
+                    var product = _context.products.Where(p => p.ProductType.categoryId == id).Where(p => p.producdPrice >= sPrice).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+                else
+                {
+                    var product = _context.products.Where(p => p.ProductTypeId == Type).Where(p => p.producdPrice >= sPrice).Where(p => p.producdPrice <= ePrice).Where(p => p.status == "active").ToList();
+                    ViewData["product"] = product;
+                }
+               
             }
           
             return View();
@@ -101,7 +139,7 @@ namespace KaiserStore.Controllers
         [Route("/Product/{id}")]
         public async Task<IActionResult> ProductAsync(int id)
         {
-            if ((await _context.products.Where(p => p.Id == id).Include("category").FirstOrDefaultAsync()).category.status == "disable")
+            if ((await _context.products.Where(p => p.Id == id).Include("ProductType").FirstOrDefaultAsync()).ProductType.status == "disable")
             {
                 return RedirectToAction("home", "home");
             }

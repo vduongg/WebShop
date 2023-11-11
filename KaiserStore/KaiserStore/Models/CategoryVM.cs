@@ -8,6 +8,6 @@ namespace KaiserStore.Models
         public string id { get; set; }
         public string namecategory { get; set; }
         public string status { get; set; }
-        public List<ProductsVM>? products { get; set; }
+        public List<ProductType>? productTypes { get; set; }
     }
 }

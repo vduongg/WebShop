@@ -1,6 +1,6 @@
 ﻿@using KaiserStore.Models;
 @{
-    List<CategoryVM> categories = ViewData["category"] != null ? (List<CategoryVM>)ViewData["category"] : null;
+    List<ProductType> productType = ViewData["productType"] != null ? (List<ProductType>)ViewData["productType"] : null;
 }
 @model KaiserStore.Models.ProductsVM;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -8,7 +8,7 @@
 
 @{
     ViewData["page"] = "product";
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Thêm sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml";
 }
 
@@ -48,10 +48,10 @@
             <h3 style="margin-bottom: 10px"> THÊM SẢN PHẨM</h3>
             <input style="margin-bottom: 10px" placeholder="Tên sản phẩm" asp-for="producdName" />
             <input style="margin-bottom: 10px" placeholder="Giá sản phẩm" asp-for="producdPrice" />
-            <select style="margin-bottom: 10px" asp-for="categoryId">
-                @foreach (var item in categories)
+            <select style="margin-bottom: 10px" asp-for="ProductTypeId">
+                @foreach (var item in productType)
                 {
-                    <option label="@item.namecategory">@item.id</option>
+                    <option label="@item.Name">@item.Id</option>
 
                 }
             </select>

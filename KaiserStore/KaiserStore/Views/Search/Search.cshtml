@@ -21,7 +21,7 @@
 
             @foreach (var item in product)
             {
-                if(item.category.status == "active")
+                if(item.ProductType.status == "active")
                 {
                     <div class="wrapper-product">
                         <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@item.Id">

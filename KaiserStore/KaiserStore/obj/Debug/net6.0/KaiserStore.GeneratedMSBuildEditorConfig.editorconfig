@@ -88,6 +88,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxSZXN0b3JlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Asp.net Core  MVC 6/Github/WebShop/KaiserStore/KaiserStore/Areas/Admin/Views/ProType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvVHlwZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Core  MVC 6/Github/WebShop/KaiserStore/KaiserStore/Areas/Admin/Views/ProType/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvVHlwZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Core  MVC 6/Github/WebShop/KaiserStore/KaiserStore/Areas/Admin/Views/ProType/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvVHlwZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Core  MVC 6/Github/WebShop/KaiserStore/KaiserStore/Areas/Admin/Views/ProType/ProductType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvVHlwZVxQcm9kdWN0VHlwZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Core  MVC 6/Github/WebShop/KaiserStore/KaiserStore/Areas/Admin/Views/ProType/Restore.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvVHlwZVxSZXN0b3JlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Asp.net Core  MVC 6/Github/WebShop/KaiserStore/KaiserStore/Areas/Admin/Views/Shared/_LayoutSidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXRTaWRlYmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
