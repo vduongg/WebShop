@@ -19,19 +19,19 @@
     <div class="wrapper">
         <div class="category-right">
 
-            @foreach (var item in product)
+            @for( int i = product.Count() -1; i>= 0; i--)
             {
-                if(item.ProductType.status == "active")
+                if(product[i].ProductType.status == "active")
                 {
                     <div class="wrapper-product">
-                        <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@item.Id">
+                        <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@product[i].Id">
                             <div class="product-img">
-                                <img width="100%" height="100%" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(item.dataimage))" />
+                                <img width="310px" height="310px" src="@String.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(product[i].dataimage))" />
                             </div>
 
-                            <span class="product-name">@item.producdName </span>
-                            <span class="product-price">@item.producdPrice</span>
-                            <span class="product-sold">Đã bán: @item.sold sản phẩm</span>
+                            <span class="product-name">@product[i].producdName </span>
+                            <span class="product-price">@product[i].producdPrice</span>
+                            <span class="product-sold">Đã bán: @product[i].sold sản phẩm</span>
                             @*  <button class="add-cart" id="add-cart"> <img src="~/image/add-cart.svg" /> </button> *@
                         </a>
 

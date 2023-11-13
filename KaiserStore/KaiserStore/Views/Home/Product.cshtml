@@ -67,9 +67,12 @@
     <div class="product-details">
         <h3>Thông tin sản phẩm</h3>
         <div class="details">
-            <span>
+            @* <span>
                 @product.describe
-            </span>
+            </span> *@
+            <textarea cols="120" rows="30" disabled>
+                @product.describe
+            </textarea>
            
         </div>
     </div>

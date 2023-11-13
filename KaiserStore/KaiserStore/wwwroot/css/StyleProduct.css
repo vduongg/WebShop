@@ -58,3 +58,6 @@
     font-weight: 600;
     background-color: #00ff21;
 }
+textarea{
+    resize: none;
+}

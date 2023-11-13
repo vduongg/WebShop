@@ -156,7 +156,7 @@
                     }
                     @for (int i = bestSell.Count() - 1; i >= max; i--)
                     {
-                        if(bestSell[i].ProductType.status == "active")
+                        if(bestSell[i].ProductType.status == "active" && bestSell[i].sold > 0)
                         {
                             <a class="product" asp-action="Product" asp-controller="Home" asp-route-id="@bestSell[i].Id" class="product">
                             <div class="product-img">
